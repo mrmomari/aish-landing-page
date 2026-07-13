@@ -35,9 +35,9 @@ export function ImageUpload({
   return (
     <div className="flex items-center gap-4">
       {currentUrl ? (
-        <img src={currentUrl} alt="" className="h-16 w-16 rounded-md border border-white/15 object-cover" />
+        <img src={currentUrl} alt="" className="h-16 w-16 rounded-md border border-[#e0dccf] object-cover" />
       ) : (
-        <div className="flex h-16 w-16 items-center justify-center rounded-md border border-dashed border-white/20 text-white/30">
+        <div className="flex h-16 w-16 items-center justify-center rounded-md border border-dashed border-[#cdc8ba] text-[#b3afa2]">
           <UploadCloud className="h-5 w-5" />
         </div>
       )}
@@ -46,11 +46,11 @@ export function ImageUpload({
           type="button"
           disabled={uploading}
           onClick={() => inputRef.current?.click()}
-          className="rounded-md border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/80 transition-colors hover:border-[#d6b878] hover:text-[#d6b878] disabled:opacity-50"
+          className="rounded-md border border-[#c9c4b6] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#55534b] transition-colors hover:border-[#9a7b3f] hover:text-[#9a7b3f] disabled:opacity-50"
         >
           {uploading ? "Uploading…" : label}
         </button>
-        {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
+        {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
         <input
           ref={inputRef}
           type="file"

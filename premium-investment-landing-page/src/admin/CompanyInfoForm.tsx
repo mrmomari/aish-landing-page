@@ -30,14 +30,14 @@ export function CompanyInfoForm({
 
   return (
     <div className="max-w-3xl">
-      <h2 className="text-2xl font-medium tracking-[-0.02em] text-white">Company information</h2>
-      <p className="mt-2 text-sm text-white/50">
-        This appears prominently on the landing page and in the footer. Click "Publish changes" above when
+      <h2 className="text-2xl font-medium tracking-[-0.02em] text-[#22262b]">Company information</h2>
+      <p className="mt-2 text-sm text-[#6d7177]">
+        This appears prominently on the landing page and in the footer. Click "Publish" above when
         you're done editing.
       </p>
 
       <div className="mt-6">
-        <p className="mb-2 text-xs uppercase tracking-wide text-white/50">Company logo</p>
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#77746a]">Company logo</p>
         <ImageUpload
           folder="company"
           currentUrl={info.logo_url}
@@ -49,21 +49,21 @@ export function CompanyInfoForm({
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {FIELDS.map((field) => (
           <div key={field.key} className={field.span ? "sm:col-span-2" : ""}>
-            <label className="text-xs uppercase tracking-wide text-white/50">{field.label}</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">{field.label}</label>
             <input
               value={(info[field.key] as string) ?? ""}
               onChange={(e) => update(field.key, e.target.value)}
-              className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
+              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
             />
           </div>
         ))}
         <div className="sm:col-span-2">
-          <label className="text-xs uppercase tracking-wide text-white/50">Description</label>
+          <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Description</label>
           <textarea
             value={info.description ?? ""}
             onChange={(e) => update("description", e.target.value)}
             rows={3}
-            className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
+            className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
           />
         </div>
       </div>

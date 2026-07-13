@@ -251,22 +251,22 @@ function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || isOpen
-          ? "border-b border-white/10 bg-[#0b0f12]/90 shadow-[0_8px_35px_rgba(0,0,0,.2)] backdrop-blur-xl"
+          ? "border-b border-[#e0dbcf] bg-[#f3f1eb]/90 shadow-[0_8px_35px_rgba(30,26,16,.08)] backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <a
           href="#home"
-          className="group flex items-center gap-3 text-white"
+          className="group flex items-center gap-3 text-[#111518]"
           aria-label="All Investments Strategic Holding home"
         >
-          <BrandMark className="h-10 w-10 text-[#d6bd88] transition-transform duration-500 group-hover:rotate-6" />
+          <BrandMark className="h-10 w-10 text-[#a88148] transition-transform duration-500 group-hover:rotate-6" />
           <span className="leading-none">
             <span className="block text-[13px] font-semibold tracking-[0.16em]">
               ALL INVESTMENTS
             </span>
-            <span className="mt-1 block text-[8px] font-medium tracking-[0.27em] text-white/55">
+            <span className="mt-1 block text-[8px] font-medium tracking-[0.27em] text-[#111518]/55">
               STRATEGIC HOLDING LLC
             </span>
           </span>
@@ -277,7 +277,7 @@ function Header() {
             <a
               key={item.label}
               href={item.href}
-              className="nav-link text-[13px] font-medium text-white/70 transition-colors hover:text-white"
+              className="nav-link text-[13px] font-medium text-[#111518]/70 transition-colors hover:text-[#111518]"
             >
               {item.label}
             </a>
@@ -286,7 +286,7 @@ function Header() {
 
         <a
           href="#contact"
-          className="group hidden items-center gap-2 border border-white/30 px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition-all hover:border-[#d9bd85] hover:bg-[#d9bd85] hover:text-[#111417] lg:flex"
+          className="group hidden items-center gap-2 border border-[#111518]/30 px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#111518] transition-all hover:border-[#d9bd85] hover:bg-[#d9bd85] hover:text-[#111417] lg:flex"
         >
           Start a conversation
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -294,7 +294,7 @@ function Header() {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-white lg:hidden"
+          className="flex h-11 w-11 items-center justify-center text-[#111518] lg:hidden"
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -313,7 +313,7 @@ function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="overflow-hidden border-t border-white/10 bg-[#0b0f12] lg:hidden"
+            className="overflow-hidden border-t border-[#e0dbcf] bg-[#f3f1eb] lg:hidden"
           >
             <div className="space-y-1 px-5 py-6 sm:px-8">
               {navItems.map((item, index) => (
@@ -324,7 +324,7 @@ function Header() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.06 }}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between border-b border-white/10 py-4 text-lg text-white"
+                  className="flex items-center justify-between border-b border-[#ddd8cc] py-4 text-lg text-[#111518]"
                 >
                   {item.label}
                   <ArrowUpRight className="h-4 w-4 text-[#c6a364]" />
@@ -349,17 +349,17 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[760px] items-end overflow-hidden bg-[#0a0e11] pb-16 pt-36 text-white sm:min-h-[820px] sm:pb-20 lg:min-h-[900px] lg:pb-24"
+      className="relative flex min-h-[760px] items-end overflow-hidden bg-[#f3f1eb] pb-16 pt-36 text-[#111518] sm:min-h-[820px] sm:pb-20 lg:min-h-[900px] lg:pb-24"
     >
       <div
         className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] sm:bg-center"
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/usa-future.jpg)` }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,12,.92)_0%,rgba(5,9,12,.68)_42%,rgba(5,9,12,.15)_75%),linear-gradient(0deg,rgba(5,9,12,.9)_0%,rgba(5,9,12,.12)_52%,rgba(5,9,12,.42)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(243,241,235,.96)_0%,rgba(243,241,235,.78)_42%,rgba(243,241,235,.2)_75%),linear-gradient(0deg,rgba(243,241,235,.94)_0%,rgba(243,241,235,.16)_52%,rgba(243,241,235,.5)_100%)]" />
       <div className="grain absolute inset-0 opacity-30" />
       <motion.div
         aria-hidden="true"
-        className="absolute -right-24 top-28 h-72 w-72 rounded-full border border-[#e5c989]/20"
+        className="absolute -right-24 top-28 h-72 w-72 rounded-full border border-[#a88148]/25"
         animate={{ rotate: 360, scale: [1, 1.04, 1] }}
         transition={{ rotate: { duration: 32, repeat: Infinity, ease: "linear" }, scale: { duration: 7, repeat: Infinity } }}
       />
@@ -373,9 +373,9 @@ function Hero() {
         >
           <motion.div
             variants={reveal}
-            className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#e1c78e] sm:text-[11px]"
+            className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#9b753d] sm:text-[11px]"
           >
-            <span className="h-px w-9 bg-[#d2b36f]" />
+            <span className="h-px w-9 bg-[#b99455]" />
             Strategic Holding LLC
           </motion.div>
           <motion.h1
@@ -389,10 +389,10 @@ function Hero() {
             variants={reveal}
             className="mt-8 max-w-2xl border-l border-[#c7a463]/70 pl-5 sm:mt-10 sm:pl-7"
           >
-            <p className="text-xl font-light leading-snug text-white sm:text-2xl lg:text-[30px]">
+            <p className="text-xl font-light leading-snug text-[#111518] sm:text-2xl lg:text-[30px]">
               We build the companies shaping what comes next.
             </p>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-white/62 sm:text-base sm:leading-7">
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#5d5c55] sm:text-base sm:leading-7">
               A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects.
             </p>
           </motion.div>
@@ -406,7 +406,7 @@ function Hero() {
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 border border-white/35 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.13em] text-white transition-colors hover:border-white hover:bg-white hover:text-[#0b0f12] sm:px-7"
+              className="inline-flex items-center gap-3 border border-[#111518]/35 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.13em] text-[#111518] transition-colors hover:border-[#111518] hover:bg-[#111518] hover:text-[#f3f1eb] sm:px-7"
             >
               Partner with us
             </a>
@@ -417,10 +417,10 @@ function Hero() {
       <a
         href="#proof"
         aria-label="Scroll to discover"
-        className="absolute bottom-7 right-5 z-10 hidden items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-white/50 transition-colors hover:text-white sm:flex lg:right-12"
+        className="absolute bottom-7 right-5 z-10 hidden items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#111518]/55 transition-colors hover:text-[#111518] sm:flex lg:right-12"
       >
         Discover
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#111518]/20">
           <ChevronDown className="scroll-cue h-4 w-4" />
         </span>
       </a>
@@ -578,7 +578,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
   if (holdings.length === 0) return null;
 
   return (
-    <section id="portfolio" className="overflow-hidden bg-[#0c1114] py-24 text-white sm:py-32 lg:py-40">
+    <section id="portfolio" className="overflow-hidden bg-[#faf8f3] py-24 text-[#111518] sm:py-32 lg:py-40">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -592,33 +592,33 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
             <h2 className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
               One platform. Multiple paths to progress.
             </h2>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/55 sm:text-lg sm:leading-8">
+            <p className="mt-7 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
               Explore the active companies and future projects that translate our long-term investment themes into focused operating platforms.
             </p>
           </div>
         </motion.div>
 
-        <div className="mt-16 grid border-y border-white/14 lg:mt-24 lg:grid-cols-[.72fr_1.28fr]">
-          <div className="border-b border-white/14 py-3 lg:border-b-0 lg:border-r lg:py-6">
+        <div className="mt-16 grid border-y border-[#ddd8cc] lg:mt-24 lg:grid-cols-[.72fr_1.28fr]">
+          <div className="border-b border-[#ddd8cc] py-3 lg:border-b-0 lg:border-r lg:py-6">
             {holdings.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setSelected(index)}
                 aria-pressed={selected === index}
-                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-white/8 px-2 py-5 text-left last:border-b-0 sm:px-5 lg:px-7 lg:py-6"
+                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-[#e7e2d5] px-2 py-5 text-left last:border-b-0 sm:px-5 lg:px-7 lg:py-6"
               >
                 {selected === index && (
                   <motion.span
                     layoutId="company-active"
-                    className="absolute inset-0 bg-white/[0.055]"
+                    className="absolute inset-0 bg-[#111518]/[0.045]"
                     transition={{ type: "spring", stiffness: 280, damping: 30 }}
                   />
                 )}
                 <span className="relative flex items-center gap-4">
                   <span
                     className="flex h-9 w-9 items-center justify-center overflow-hidden border text-[10px] font-semibold tracking-[0.1em] transition-colors"
-                    style={{ borderColor: selected === index ? item.accent_color : "rgba(255,255,255,.18)", color: selected === index ? item.accent_color : "rgba(255,255,255,.45)" }}
+                    style={{ borderColor: selected === index ? item.accent_color : "rgba(17,21,24,.2)", color: selected === index ? item.accent_color : "rgba(17,21,24,.5)" }}
                   >
                     {item.logo_url ? (
                       <img src={item.logo_url} alt="" className="h-full w-full object-cover" />
@@ -627,15 +627,15 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                     )}
                   </span>
                   <span>
-                    <span className={`block text-sm font-medium transition-colors sm:text-base ${selected === index ? "text-white" : "text-white/55 group-hover:text-white"}`}>
+                    <span className={`block text-sm font-medium transition-colors sm:text-base ${selected === index ? "text-[#111518]" : "text-[#77746a] group-hover:text-[#111518]"}`}>
                       {item.name}
                     </span>
-                    <span className="mt-1 block text-[10px] uppercase tracking-[0.16em] text-white/30">
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.16em] text-[#a29d91]">
                       {item.stage}
                     </span>
                   </span>
                 </span>
-                <ArrowRight className={`relative h-4 w-4 transition-all ${selected === index ? "translate-x-0 text-[#d7b977]" : "-translate-x-2 text-white/0 group-hover:translate-x-0 group-hover:text-white/70"}`} />
+                <ArrowRight className={`relative h-4 w-4 transition-all ${selected === index ? "translate-x-0 text-[#9b753d]" : "-translate-x-2 text-[#111518]/0 group-hover:translate-x-0 group-hover:text-[#111518]/70"}`} />
               </button>
             ))}
           </div>
@@ -651,17 +651,17 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                 className="relative flex h-full min-h-[640px] flex-col justify-between p-6 sm:min-h-[600px] sm:p-10 lg:min-h-[680px] lg:p-14"
               >
                 <div
-                  className="portfolio-glow absolute -right-32 -top-36 h-[480px] w-[480px] rounded-full opacity-30 blur-3xl"
+                  className="portfolio-glow absolute -right-32 -top-36 h-[480px] w-[480px] rounded-full opacity-20 blur-3xl"
                   style={{ background: company.accent_color }}
                 />
-                <div className="portfolio-orbit absolute right-[-170px] top-16 h-[520px] w-[520px] rounded-full border border-white/10 sm:right-[-70px] lg:right-[-30px]">
-                  <div className="absolute inset-[15%] rounded-full border border-white/10" />
-                  <div className="absolute inset-[32%] rounded-full border border-white/10" />
+                <div className="portfolio-orbit absolute right-[-170px] top-16 h-[520px] w-[520px] rounded-full border border-[#111518]/10 sm:right-[-70px] lg:right-[-30px]">
+                  <div className="absolute inset-[15%] rounded-full border border-[#111518]/10" />
+                  <div className="absolute inset-[32%] rounded-full border border-[#111518]/10" />
                   <span className="absolute left-1/2 top-[-4px] h-2 w-2 rounded-full" style={{ background: company.accent_color }} />
                 </div>
                 <div className="relative flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">{company.sector}</p>
-                  <span className="font-mono text-xs text-white/35">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#847f73]">{company.sector}</p>
+                  <span className="font-mono text-xs text-[#a29d91]">
                     {String(selected + 1).padStart(2, "0")} / {String(holdings.length).padStart(2, "0")}
                   </span>
                 </div>
@@ -670,16 +670,16 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   {company.logo_url ? (
                     <img src={company.logo_url} alt={company.name} className="h-16 w-16 rounded-md object-cover" />
                   ) : (
-                    <p className="font-serif text-6xl text-white/12 sm:text-8xl">{company.short_code}</p>
+                    <p className="font-serif text-6xl text-[#111518]/10 sm:text-8xl">{company.short_code}</p>
                   )}
                   <h3 className="-mt-5 text-3xl font-medium leading-tight tracking-[-0.035em] sm:-mt-8 sm:text-5xl">
                     {company.headline}
                   </h3>
-                  <p className="mt-6 max-w-lg text-sm leading-7 text-white/55 sm:text-base">{company.description}</p>
+                  <p className="mt-6 max-w-lg text-sm leading-7 text-[#65645f] sm:text-base">{company.description}</p>
                   {(company.contact_email || company.contact_phone) && (
-                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-white/50">
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6d685c]">
                       {company.contact_email && (
-                        <a href={`mailto:${company.contact_email}`} className="flex items-center gap-2 hover:text-white">
+                        <a href={`mailto:${company.contact_email}`} className="flex items-center gap-2 hover:text-[#111518]">
                           <Mail className="h-3.5 w-3.5" /> {company.contact_email}
                         </a>
                       )}
@@ -692,10 +692,10 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   )}
                 </div>
 
-                <div className="relative mt-16 flex flex-wrap items-end justify-between gap-8 border-t border-white/14 pt-7">
+                <div className="relative mt-16 flex flex-wrap items-end justify-between gap-8 border-t border-[#ddd8cc] pt-7">
                   <div className="flex flex-wrap gap-x-7 gap-y-3">
                     {company.focus_tags.map((focus) => (
-                      <span key={focus} className="flex items-center gap-2 text-xs text-white/65">
+                      <span key={focus} className="flex items-center gap-2 text-xs text-[#4f504c]">
                         <span className="h-1 w-1 rounded-full" style={{ background: company.accent_color }} />
                         {focus}
                       </span>
@@ -706,7 +706,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                       href={company.website_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
+                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#111518]"
                     >
                       Visit website
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -714,7 +714,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   ) : (
                     <a
                       href="#contact"
-                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
+                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#111518]"
                     >
                       Enquire
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -914,27 +914,27 @@ function Partnerships() {
               key={pathway.name}
               className={`relative flex min-h-[590px] flex-col border-b border-[#c8c2b7] px-2 py-10 sm:px-8 lg:px-9 lg:py-12 ${
                 index > 0 ? "lg:border-l" : ""
-              } ${pathway.featured ? "bg-[#12171a] text-white" : "text-[#14191c]"}`}
+              } ${pathway.featured ? "bg-white text-[#14191c] shadow-[0_28px_80px_rgba(70,55,25,0.12)] ring-1 ring-[#c2a05e]" : "text-[#14191c]"}`}
             >
               {pathway.featured && (
-                <span className="absolute right-5 top-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#d6b878]">
+                <span className="absolute right-5 top-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#9b753d]">
                   Preferred
                 </span>
               )}
-              <p className={`text-[11px] font-semibold uppercase tracking-[0.2em] ${pathway.featured ? "text-white/50" : "text-[#77736b]"}`}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#77736b]">
                 0{index + 1} / {pathway.name}
               </p>
               <div className="mt-14">
                 <p className="text-4xl font-medium tracking-[-0.04em] sm:text-5xl">{pathway.price}</p>
-                {pathway.suffix && <p className="mt-2 text-xs text-white/45">{pathway.suffix}</p>}
-                <p className={`mt-7 min-h-[84px] text-sm leading-7 ${pathway.featured ? "text-white/55" : "text-[#68665f]"}`}>
+                {pathway.suffix && <p className="mt-2 text-xs text-[#77736b]">{pathway.suffix}</p>}
+                <p className="mt-7 min-h-[84px] text-sm leading-7 text-[#68665f]">
                   {pathway.description}
                 </p>
               </div>
-              <ul className={`mt-9 space-y-4 border-t pt-8 ${pathway.featured ? "border-white/14" : "border-[#cbc5ba]"}`}>
+              <ul className="mt-9 space-y-4 border-t border-[#cbc5ba] pt-8">
                 {pathway.features.map((feature) => (
-                  <li key={feature} className={`flex items-start gap-3 text-sm ${pathway.featured ? "text-white/75" : "text-[#4f504c]"}`}>
-                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${pathway.featured ? "text-[#d8b977]" : "text-[#9b753d]"}`} />
+                  <li key={feature} className="flex items-start gap-3 text-sm text-[#4f504c]">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#9b753d]" />
                     {feature}
                   </li>
                 ))}
@@ -965,7 +965,7 @@ function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-[#0c1114] py-24 text-white sm:py-32 lg:py-40">
+    <section className="bg-[#f3f1eb] py-24 text-[#111518] sm:py-32 lg:py-40">
       <div className="mx-auto grid max-w-[1440px] gap-16 px-5 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-24 lg:px-12">
         <motion.div
           initial="hidden"
@@ -978,7 +978,7 @@ function FAQ() {
           <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
             Clarity before the conversation.
           </h2>
-          <p className="mt-7 max-w-md text-base leading-7 text-white/50">
+          <p className="mt-7 max-w-md text-base leading-7 text-[#65645f]">
             A concise view of how we invest, partner, and evaluate what comes next.
           </p>
         </motion.div>
@@ -988,12 +988,12 @@ function FAQ() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="border-t border-white/15"
+          className="border-t border-[#cfc9bd]"
         >
           {faqs.map((faq, index) => {
             const isOpen = open === index;
             return (
-              <motion.div variants={reveal} key={faq.question} className="border-b border-white/15">
+              <motion.div variants={reveal} key={faq.question} className="border-b border-[#cfc9bd]">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? -1 : index)}
@@ -1002,11 +1002,11 @@ function FAQ() {
                   aria-controls={`faq-${index}`}
                 >
                   <span className="flex gap-4 sm:gap-7">
-                    <span className="mt-1 font-mono text-[10px] text-[#c6a562]">0{index + 1}</span>
-                    <span className="text-lg font-medium tracking-[-0.02em] text-white/90 sm:text-xl">{faq.question}</span>
+                    <span className="mt-1 font-mono text-[10px] text-[#9b753d]">0{index + 1}</span>
+                    <span className="text-lg font-medium tracking-[-0.02em] text-[#1b2023] sm:text-xl">{faq.question}</span>
                   </span>
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/20 transition-colors group-hover:border-[#c6a562]">
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#d2b272]" : "text-white/60"}`} />
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-[#c5bfb3] transition-colors group-hover:border-[#9b753d]">
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#9b753d]" : "text-[#6b6f75]"}`} />
                   </span>
                 </button>
                 <AnimatePresence initial={false}>
@@ -1019,7 +1019,7 @@ function FAQ() {
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="max-w-2xl pb-8 pl-9 text-sm leading-7 text-white/50 sm:pb-10 sm:pl-14 sm:text-base sm:leading-8">
+                      <p className="max-w-2xl pb-8 pl-9 text-sm leading-7 text-[#65645f] sm:pb-10 sm:pl-14 sm:text-base sm:leading-8">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1037,16 +1037,16 @@ function FAQ() {
 function ContactCTA({ info }: { info: CompanyInfo | null }) {
   const contactEmail = info?.email || "info@allinvestments.ae";
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#151b1f] py-24 text-white sm:py-32 lg:py-44">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(201,168,100,.24),transparent_28%),radial-gradient(circle_at_20%_100%,rgba(107,139,154,.14),transparent_30%)]" />
+    <section id="contact" className="relative overflow-hidden bg-[#e9e6de] py-24 text-[#111518] sm:py-32 lg:py-44">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(185,148,85,.2),transparent_28%),radial-gradient(circle_at_20%_100%,rgba(107,139,154,.12),transparent_30%)]" />
       <div className="grain absolute inset-0 opacity-30" />
       <motion.div
         aria-hidden="true"
-        className="absolute -right-20 -top-20 h-[420px] w-[420px] rounded-full border border-[#d5b575]/15"
+        className="absolute -right-20 -top-20 h-[420px] w-[420px] rounded-full border border-[#a88148]/25"
         animate={{ rotate: 360 }}
         transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
       >
-        <span className="absolute left-1/2 top-[-5px] h-2.5 w-2.5 rounded-full bg-[#d5b575] shadow-[0_0_30px_#d5b575]" />
+        <span className="absolute left-1/2 top-[-5px] h-2.5 w-2.5 rounded-full bg-[#a88148] shadow-[0_0_30px_rgba(168,129,72,.55)]" />
       </motion.div>
 
       <motion.div
@@ -1056,15 +1056,15 @@ function ContactCTA({ info }: { info: CompanyInfo | null }) {
         variants={stagger}
         className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"
       >
-        <motion.div variants={reveal} className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#d6b878]">
-          <span className="h-px w-7 bg-[#d6b878]" />
+        <motion.div variants={reveal} className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
+          <span className="h-px w-7 bg-[#9b753d]" />
           The next chapter
         </motion.div>
         <motion.h2 variants={reveal} className="mt-8 max-w-5xl text-5xl font-medium leading-[.98] tracking-[-0.05em] sm:text-7xl lg:text-[104px]">
           Let's build what the future will value.
         </motion.h2>
-        <motion.div variants={reveal} className="mt-12 flex flex-col gap-8 border-t border-white/16 pt-9 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-7 text-white/52 sm:text-base">
+        <motion.div variants={reveal} className="mt-12 flex flex-col gap-8 border-t border-[#c8c2b7] pt-9 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-7 text-[#65645f] sm:text-base">
             Share an investment, company, or project with our team. If the ambition and alignment are right, we will take it from there.
           </p>
           <a
@@ -1086,31 +1086,31 @@ function Footer({ info }: { info: CompanyInfo | null }) {
   const location = [info?.city, info?.country].filter(Boolean).join(", ") || info?.country || "United States";
 
   return (
-    <footer className="bg-[#080b0d] text-white">
+    <footer className="border-t border-[#d3cec3] bg-[#eceae2] text-[#111518]">
       <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-        <div className="grid gap-14 border-b border-white/12 pb-14 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-20 lg:pb-20">
+        <div className="grid gap-14 border-b border-[#d3cec3] pb-14 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-20 lg:pb-20">
           <div>
             <a href="#home" className="inline-flex items-center gap-4" aria-label="Back to home">
               {info?.logo_url ? (
                 <img src={info.logo_url} alt={legalName} className="h-14 w-14 object-contain" />
               ) : (
-                <BrandMark className="h-14 w-14 text-[#d4bd8b]" />
+                <BrandMark className="h-14 w-14 text-[#a88148]" />
               )}
               <span>
                 <span className="block text-base font-semibold tracking-[0.15em]">{(info?.display_name || "ALL INVESTMENTS").toUpperCase()}</span>
-                <span className="mt-1.5 block text-[9px] tracking-[0.28em] text-white/42">STRATEGIC HOLDING LLC</span>
+                <span className="mt-1.5 block text-[9px] tracking-[0.28em] text-[#8a867b]">STRATEGIC HOLDING LLC</span>
               </span>
             </a>
-            <p className="mt-7 max-w-md text-sm leading-7 text-white/42">
+            <p className="mt-7 max-w-md text-sm leading-7 text-[#6d6a61]">
               Investing across generations, sectors, and frontiers to build companies of lasting relevance.
             </p>
           </div>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c5a466]">Navigate</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Navigate</p>
             <nav className="mt-6 space-y-4" aria-label="Footer navigation">
               {navItems.map((item) => (
-                <a key={item.label} href={item.href} className="block w-fit text-sm text-white/55 transition-colors hover:text-white">
+                <a key={item.label} href={item.href} className="block w-fit text-sm text-[#565b57] transition-colors hover:text-[#111518]">
                   {item.label}
                 </a>
               ))}
@@ -1118,30 +1118,30 @@ function Footer({ info }: { info: CompanyInfo | null }) {
           </div>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c5a466]">Contact</p>
-            <div className="mt-6 space-y-4 text-sm text-white/55">
-              <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 transition-colors hover:text-white">
-                <Mail className="h-4 w-4 text-[#b79255]" />
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Contact</p>
+            <div className="mt-6 space-y-4 text-sm text-[#565b57]">
+              <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 transition-colors hover:text-[#111518]">
+                <Mail className="h-4 w-4 text-[#9b753d]" />
                 {contactEmail}
               </a>
               <p className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-[#b79255]" />
+                <MapPin className="h-4 w-4 text-[#9b753d]" />
                 {location}
               </p>
-              <a href="#contact" className="flex items-center gap-3 transition-colors hover:text-white">
-                <ExternalLink className="h-4 w-4 text-[#b79255]" />
+              <a href="#contact" className="flex items-center gap-3 transition-colors hover:text-[#111518]">
+                <ExternalLink className="h-4 w-4 text-[#9b753d]" />
                 LinkedIn
               </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 pt-7 text-[10px] uppercase tracking-[0.14em] text-white/28 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-5 pt-7 text-[10px] uppercase tracking-[0.14em] text-[#8f8b80] sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} {legalName}</p>
           <div className="flex gap-6">
-            <a href="#home" className="transition-colors hover:text-white/65">Privacy</a>
-            <a href="#home" className="transition-colors hover:text-white/65">Terms</a>
-            <a href="/?admin=1" className="transition-colors hover:text-white/65">Admin</a>
+            <a href="#home" className="transition-colors hover:text-[#111518]">Privacy</a>
+            <a href="#home" className="transition-colors hover:text-[#111518]">Terms</a>
+            <a href={`${import.meta.env.BASE_URL}?admin=1`} className="transition-colors hover:text-[#111518]">Admin</a>
           </div>
         </div>
       </div>
@@ -1171,7 +1171,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#f3f1eb] text-[#121619]">
       <motion.div
-        className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#d8b977]"
+        className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#a88148]"
         style={{ scaleX }}
       />
       <Header />

@@ -36,7 +36,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid #d6b878;
+  outline: 2px solid #9b753d;
   outline-offset: 4px;
 }
 
@@ -49,8 +49,8 @@ button {
 }
 
 .gold-text {
-  color: #d8bb7e;
-  background: linear-gradient(115deg, #a97f46 0%, #f4dfaa 44%, #c69b5e 72%, #e5c88d 100%);
+  color: #9b753d;
+  background: linear-gradient(115deg, #7c5a24 0%, #c79c50 44%, #8f682c 72%, #b38941 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -58,7 +58,7 @@ button {
 
 .hero-title {
   text-wrap: balance;
-  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.26));
+  filter: drop-shadow(0 6px 28px rgba(243, 241, 235, 0.55));
 }
 
 .hero-kenburns {
