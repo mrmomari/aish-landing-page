@@ -281,7 +281,7 @@ function Header({ info }: { info: CompanyInfo | null }) {
             <img
               src={info.logo_url}
               alt=""
-              className="h-11 w-11 object-contain transition-transform duration-500 group-hover:scale-105"
+              className="h-16 w-auto max-w-[220px] object-contain transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
             <BrandMark className="h-10 w-10 text-[#a88148] transition-transform duration-500 group-hover:rotate-6" />
@@ -514,7 +514,7 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
           <div>
             <SectionLabel>Company information</SectionLabel>
             {info.logo_url && (
-              <img src={info.logo_url} alt={info.legal_name} className="mb-6 h-14 w-auto object-contain" />
+              <img src={info.logo_url} alt={info.legal_name} className="mb-8 h-24 w-auto object-contain sm:h-28" />
             )}
             <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-[#111518] sm:text-4xl">
               {info.legal_name}
@@ -645,11 +645,11 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                 )}
                 <span className="relative flex items-center gap-4">
                   <span
-                    className="flex h-9 w-9 items-center justify-center overflow-hidden border text-[10px] font-semibold tracking-[0.1em] transition-colors"
+                    className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden border bg-white text-[11px] font-semibold tracking-[0.1em] transition-colors"
                     style={{ borderColor: selected === index ? item.accent_color : "rgba(17,21,24,.2)", color: selected === index ? item.accent_color : "rgba(17,21,24,.5)" }}
                   >
                     {item.logo_url ? (
-                      <img src={item.logo_url} alt="" className="h-full w-full object-cover" />
+                      <img src={item.logo_url} alt="" className="h-full w-full object-contain p-1" />
                     ) : (
                       item.short_code
                     )}
@@ -687,6 +687,14 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   <div className="absolute inset-[32%] rounded-full border border-[#111518]/10" />
                   <span className="absolute left-1/2 top-[-4px] h-2 w-2 rounded-full" style={{ background: company.accent_color }} />
                 </div>
+                {company.logo_url && (
+                  <img
+                    src={company.logo_url}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-[-60px] top-1/2 h-[340px] w-[340px] -translate-y-1/2 object-contain opacity-[0.08] sm:right-4 sm:h-[420px] sm:w-[420px] lg:right-16"
+                  />
+                )}
                 <div className="relative flex items-center justify-between">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#847f73]">{company.sector}</p>
                   <span className="font-mono text-xs text-[#a29d91]">
@@ -695,9 +703,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                 </div>
 
                 <div className="relative mt-36 max-w-xl sm:mt-28 lg:mt-36">
-                  {company.logo_url ? (
-                    <img src={company.logo_url} alt={company.name} className="mb-6 h-16 w-16 rounded-md object-contain" />
-                  ) : (
+                  {!company.logo_url && (
                     <p className="-mb-5 font-serif text-6xl text-[#111518]/10 sm:-mb-8 sm:text-8xl">{company.short_code}</p>
                   )}
                   <h3 className="text-3xl font-medium leading-tight tracking-[-0.035em] sm:text-5xl">
