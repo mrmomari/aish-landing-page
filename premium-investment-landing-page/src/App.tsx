@@ -227,6 +227,21 @@ function BrandMark({ className = "" }: { className?: string }) {
   );
 }
 
+function brandParts(info: CompanyInfo | null) {
+  const legal = info?.legal_name?.trim() || "All Investments Strategic Holding LLC";
+  const match = legal.match(/,?\s*\b(LLC|L\.L\.C\.|Inc\.?|Ltd\.?|Corp\.?)\s*$/i);
+  const suffix = match ? match[1] : "";
+  const name = match ? legal.slice(0, match.index).replace(/,\s*$/, "").trim() : legal;
+  const words = name.split(/\s+/);
+  return {
+    legal,
+    name,
+    suffix,
+    headlineLead: words.slice(0, -1).join(" "),
+    headlineLast: words[words.length - 1],
+  };
+}
+
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
@@ -236,9 +251,10 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Header() {
+function Header({ info }: { info: CompanyInfo | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const brand = brandParts(info);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -259,16 +275,26 @@ function Header() {
         <a
           href="#home"
           className="group flex items-center gap-3 text-[#111518]"
-          aria-label="All Investments Strategic Holding home"
+          aria-label={`${brand.legal} home`}
         >
-          <BrandMark className="h-10 w-10 text-[#a88148] transition-transform duration-500 group-hover:rotate-6" />
+          {info?.logo_url ? (
+            <img
+              src={info.logo_url}
+              alt=""
+              className="h-11 w-11 object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <BrandMark className="h-10 w-10 text-[#a88148] transition-transform duration-500 group-hover:rotate-6" />
+          )}
           <span className="leading-none">
             <span className="block text-[13px] font-semibold tracking-[0.16em]">
-              ALL INVESTMENTS
+              {brand.name.toUpperCase()}
             </span>
-            <span className="mt-1 block text-[8px] font-medium tracking-[0.27em] text-[#111518]/55">
-              STRATEGIC HOLDING LLC
-            </span>
+            {brand.suffix && (
+              <span className="mt-1 block text-[8px] font-medium tracking-[0.27em] text-[#111518]/55">
+                {brand.suffix.toUpperCase()}
+              </span>
+            )}
           </span>
         </a>
 
@@ -345,7 +371,8 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ info }: { info: CompanyInfo | null }) {
+  const brand = brandParts(info);
   return (
     <section
       id="home"
@@ -376,24 +403,25 @@ function Hero() {
             className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#9b753d] sm:text-[11px]"
           >
             <span className="h-px w-9 bg-[#b99455]" />
-            Strategic Holding LLC
+            {brand.legal}
           </motion.div>
           <motion.h1
             variants={reveal}
             className="hero-title max-w-4xl text-[clamp(3.25rem,10vw,8.2rem)] font-medium uppercase leading-[0.82] tracking-[-0.065em]"
           >
-            <span className="block">All</span>
-            <span className="gold-text block">Investments</span>
+            {brand.headlineLead && <span className="block">{brand.headlineLead}</span>}
+            <span className="gold-text block">{brand.headlineLast}</span>
           </motion.h1>
           <motion.div
             variants={reveal}
             className="mt-8 max-w-2xl border-l border-[#c7a463]/70 pl-5 sm:mt-10 sm:pl-7"
           >
             <p className="text-xl font-light leading-snug text-[#111518] sm:text-2xl lg:text-[30px]">
-              We build the companies shaping what comes next.
+              {info?.tagline || "We build the companies shaping what comes next."}
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-[#5d5c55] sm:text-base sm:leading-7">
-              A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects.
+              {info?.description ||
+                "A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects."}
             </p>
           </motion.div>
           <motion.div variants={reveal} className="mt-8 flex flex-wrap gap-3 sm:mt-10">
@@ -668,11 +696,11 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
 
                 <div className="relative mt-36 max-w-xl sm:mt-28 lg:mt-36">
                   {company.logo_url ? (
-                    <img src={company.logo_url} alt={company.name} className="h-16 w-16 rounded-md object-cover" />
+                    <img src={company.logo_url} alt={company.name} className="mb-6 h-16 w-16 rounded-md object-contain" />
                   ) : (
-                    <p className="font-serif text-6xl text-[#111518]/10 sm:text-8xl">{company.short_code}</p>
+                    <p className="-mb-5 font-serif text-6xl text-[#111518]/10 sm:-mb-8 sm:text-8xl">{company.short_code}</p>
                   )}
-                  <h3 className="-mt-5 text-3xl font-medium leading-tight tracking-[-0.035em] sm:-mt-8 sm:text-5xl">
+                  <h3 className="text-3xl font-medium leading-tight tracking-[-0.035em] sm:text-5xl">
                     {company.headline}
                   </h3>
                   <p className="mt-6 max-w-lg text-sm leading-7 text-[#65645f] sm:text-base">{company.description}</p>
@@ -1081,7 +1109,8 @@ function ContactCTA({ info }: { info: CompanyInfo | null }) {
 }
 
 function Footer({ info }: { info: CompanyInfo | null }) {
-  const legalName = info?.legal_name || "All Investments Strategic Holding LLC";
+  const brand = brandParts(info);
+  const legalName = brand.legal;
   const contactEmail = info?.email || "info@allinvestments.ae";
   const location = [info?.city, info?.country].filter(Boolean).join(", ") || info?.country || "United States";
 
@@ -1097,8 +1126,10 @@ function Footer({ info }: { info: CompanyInfo | null }) {
                 <BrandMark className="h-14 w-14 text-[#a88148]" />
               )}
               <span>
-                <span className="block text-base font-semibold tracking-[0.15em]">{(info?.display_name || "ALL INVESTMENTS").toUpperCase()}</span>
-                <span className="mt-1.5 block text-[9px] tracking-[0.28em] text-[#8a867b]">STRATEGIC HOLDING LLC</span>
+                <span className="block text-base font-semibold tracking-[0.15em]">{brand.name.toUpperCase()}</span>
+                {brand.suffix && (
+                  <span className="mt-1.5 block text-[9px] tracking-[0.28em] text-[#8a867b]">{brand.suffix.toUpperCase()}</span>
+                )}
               </span>
             </a>
             <p className="mt-7 max-w-md text-sm leading-7 text-[#6d6a61]">
@@ -1174,9 +1205,9 @@ export default function App() {
         className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#a88148]"
         style={{ scaleX }}
       />
-      <Header />
+      <Header info={companyInfo} />
       <main>
-        <Hero />
+        <Hero info={companyInfo} />
         {isVisible("company_info") && companyInfo && <CompanyInfoSection info={companyInfo} />}
         {isVisible("social_proof") && <SocialProof />}
         {isVisible("approach") && <Approach />}
