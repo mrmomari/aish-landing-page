@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AISH</title>
+    <script>
+      // GitHub Pages serves this for any unknown path. Send /admin to the
+      // admin panel via the query flag; everything else back to the site root.
+      var base = "/aish-landing-page/";
+      var isAdmin = window.location.pathname.indexOf(base + "admin") === 0;
+      window.location.replace(base + (isAdmin ? "?admin=1" : ""));
+    </script>
+  </head>
+  <body></body>
+</html>
