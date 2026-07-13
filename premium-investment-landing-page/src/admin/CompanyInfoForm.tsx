@@ -46,6 +46,19 @@ export function CompanyInfoForm({
         />
       </div>
 
+      <div className="mt-6">
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#77746a]">Hero background photo</p>
+        <ImageUpload
+          folder="hero"
+          currentUrl={info.hero_image_url}
+          onUploaded={(url) => update("hero_image_url", url)}
+          label="Upload hero photo"
+        />
+        <p className="mt-2 text-xs text-[#98958b]">
+          Shown behind the big headline at the top of the page. A wide landscape image works best.
+        </p>
+      </div>
+
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {FIELDS.map((field) => (
           <div key={field.key} className={field.span ? "sm:col-span-2" : ""}>

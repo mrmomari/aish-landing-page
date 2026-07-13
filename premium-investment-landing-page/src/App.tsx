@@ -380,7 +380,9 @@ function Hero({ info }: { info: CompanyInfo | null }) {
     >
       <div
         className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] sm:bg-center"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/usa-future.jpg)` }}
+        style={{
+          backgroundImage: `url(${info?.hero_image_url || `${import.meta.env.BASE_URL}images/usa-future.jpg`})`,
+        }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(243,241,235,.96)_0%,rgba(243,241,235,.78)_42%,rgba(243,241,235,.2)_75%),linear-gradient(0deg,rgba(243,241,235,.94)_0%,rgba(243,241,235,.16)_52%,rgba(243,241,235,.5)_100%)]" />
       <div className="grain absolute inset-0 opacity-30" />
