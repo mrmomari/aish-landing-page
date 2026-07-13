@@ -1,7 +1,7 @@
 {
   "companyInfo": {
-    "legal_name": "All Investments Strategic Holding LLC",
-    "display_name": "AISH",
+    "legal_name": "All About Investments Holding LLC",
+    "display_name": "AAIH",
     "tagline": "We build the companies shaping what comes next.",
     "description": "A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects.",
     "address_line1": "",
@@ -14,7 +14,7 @@
     "email": "info@allinvestments.ae",
     "website": "",
     "registration_number": "",
-    "logo_url": null
+    "logo_url": "/aish-landing-page/uploads/company/1783964161568-m6ma9h.png"
   },
   "holdings": [
     {
@@ -30,7 +30,11 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#d8b36a",
-      "focus_tags": ["Growth equity", "Private credit", "Special situations"],
+      "focus_tags": [
+        "Growth equity",
+        "Private credit",
+        "Special situations"
+      ],
       "sort_order": 0,
       "visible": true,
       "photos": []
@@ -48,7 +52,11 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#9db8aa",
-      "focus_tags": ["Mixed-use", "Commercial", "Destination assets"],
+      "focus_tags": [
+        "Mixed-use",
+        "Commercial",
+        "Destination assets"
+      ],
       "sort_order": 1,
       "visible": true,
       "photos": []
@@ -66,7 +74,11 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#8aa9c7",
-      "focus_tags": ["Applied AI", "Cloud systems", "Cybersecurity"],
+      "focus_tags": [
+        "Applied AI",
+        "Cloud systems",
+        "Cybersecurity"
+      ],
       "sort_order": 2,
       "visible": true,
       "photos": []
@@ -84,7 +96,11 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#b8bd75",
-      "focus_tags": ["Solar", "Energy storage", "Efficiency"],
+      "focus_tags": [
+        "Solar",
+        "Energy storage",
+        "Efficiency"
+      ],
       "sort_order": 3,
       "visible": true,
       "photos": []
@@ -102,7 +118,11 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#c49e87",
-      "focus_tags": ["Smart logistics", "Connected fleets", "Mobility data"],
+      "focus_tags": [
+        "Smart logistics",
+        "Connected fleets",
+        "Mobility data"
+      ],
       "sort_order": 4,
       "visible": true,
       "photos": []
@@ -120,22 +140,76 @@
       "contact_phone": "",
       "logo_url": null,
       "accent_color": "#b99678",
-      "focus_tags": ["Lifestyle stays", "Culinary concepts", "Destination leisure"],
+      "focus_tags": [
+        "Lifestyle stays",
+        "Culinary concepts",
+        "Destination leisure"
+      ],
       "sort_order": 5,
       "visible": true,
       "photos": []
     }
   ],
   "sections": [
-    { "section_key": "hero", "label": "Hero", "visible": true, "sort_order": 0 },
-    { "section_key": "company_info", "label": "Company Information", "visible": true, "sort_order": 1 },
-    { "section_key": "social_proof", "label": "Social Proof", "visible": true, "sort_order": 2 },
-    { "section_key": "approach", "label": "Our Approach", "visible": true, "sort_order": 3 },
-    { "section_key": "portfolio", "label": "Holdings / Portfolio", "visible": true, "sort_order": 4 },
-    { "section_key": "benefits", "label": "The AISH Advantage", "visible": true, "sort_order": 5 },
-    { "section_key": "testimonials", "label": "Partner Perspectives", "visible": true, "sort_order": 6 },
-    { "section_key": "partnerships", "label": "Partnership Pathways", "visible": true, "sort_order": 7 },
-    { "section_key": "faq", "label": "FAQ", "visible": true, "sort_order": 8 },
-    { "section_key": "contact", "label": "Contact CTA", "visible": true, "sort_order": 9 }
+    {
+      "section_key": "hero",
+      "label": "Hero",
+      "visible": true,
+      "sort_order": 0
+    },
+    {
+      "section_key": "company_info",
+      "label": "Company Information",
+      "visible": true,
+      "sort_order": 1
+    },
+    {
+      "section_key": "social_proof",
+      "label": "Social Proof",
+      "visible": true,
+      "sort_order": 2
+    },
+    {
+      "section_key": "approach",
+      "label": "Our Approach",
+      "visible": true,
+      "sort_order": 3
+    },
+    {
+      "section_key": "portfolio",
+      "label": "Holdings / Portfolio",
+      "visible": true,
+      "sort_order": 4
+    },
+    {
+      "section_key": "benefits",
+      "label": "The AISH Advantage",
+      "visible": true,
+      "sort_order": 5
+    },
+    {
+      "section_key": "testimonials",
+      "label": "Partner Perspectives",
+      "visible": true,
+      "sort_order": 6
+    },
+    {
+      "section_key": "partnerships",
+      "label": "Partnership Pathways",
+      "visible": true,
+      "sort_order": 7
+    },
+    {
+      "section_key": "faq",
+      "label": "FAQ",
+      "visible": true,
+      "sort_order": 8
+    },
+    {
+      "section_key": "contact",
+      "label": "Contact CTA",
+      "visible": true,
+      "sort_order": 9
+    }
   ]
 }
