@@ -14,6 +14,7 @@ export interface CompanyInfo {
   website: string;
   registration_number: string;
   logo_url: string | null;
+  hero_image_url?: string | null;
 }
 
 export interface Holding {
