@@ -115,7 +115,7 @@
     {
       "section_key": "company_info",
       "label": "Company Information",
-      "visible": true,
+      "visible": false,
       "sort_order": 1
     },
     {
@@ -127,7 +127,7 @@
     {
       "section_key": "approach",
       "label": "Our Approach",
-      "visible": false,
+      "visible": true,
       "sort_order": 3
     },
     {
