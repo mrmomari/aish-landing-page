@@ -118,7 +118,7 @@
     {
       "section_key": "company_info",
       "label": "Company Information",
-      "visible": false,
+      "visible": true,
       "sort_order": 1
     },
     {
