@@ -11,13 +11,22 @@ export async function loadContent(): Promise<SiteContent> {
 }
 
 export async function publishContent(content: SiteContent): Promise<void> {
-  const { sha } = await putFile(
+  // The admin panel holds the full site state, so its publish should always
+  // win: re-fetch the file's current sha instead of trusting the one from
+  // page load, which goes stale whenever another tab or device publishes.
+  let sha = cachedSha;
+  try {
+    ({ sha } = await getFile(CONTENT_PATH));
+  } catch {
+    // keep the cached sha; the put below will surface any real error
+  }
+  const { sha: newSha } = await putFile(
     CONTENT_PATH,
     JSON.stringify(content, null, 2) + "\n",
     "Update site content via admin panel",
-    cachedSha ?? undefined
+    sha ?? undefined
   );
-  cachedSha = sha;
+  cachedSha = newSha;
 }
 
 export async function uploadImage(file: File, folder: string): Promise<string> {
