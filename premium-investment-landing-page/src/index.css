@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500;600&family=Libre+Caslon+Display&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #121619;
+  background: #f3f1eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  color: #0b0f12;
+  background: #d5b575;
+}
+
+:focus-visible {
+  outline: 2px solid #d6b878;
+  outline-offset: 4px;
+}
+
+.font-serif {
+  font-family: "Libre Caslon Display", Georgia, serif;
+}
+
+.font-mono {
+  font-family: "DM Mono", monospace;
+}
+
+.gold-text {
+  color: #d8bb7e;
+  background: linear-gradient(115deg, #a97f46 0%, #f4dfaa 44%, #c69b5e 72%, #e5c88d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title {
+  text-wrap: balance;
+  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.26));
+}
+
+.hero-kenburns {
+  animation: hero-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.grain {
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.12) 0.55px, transparent 0.7px),
+    radial-gradient(rgba(255, 255, 255, 0.08) 0.55px, transparent 0.7px);
+  background-position: 0 0, 7px 7px;
+  background-size: 13px 13px;
+  mix-blend-mode: soft-light;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -9px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: #d4b573;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-gold {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(115deg, #b48d51, #e5ca8f 55%, #caa665);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.btn-gold::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(115deg, #eed8a5, #f5e5bc 55%, #d8b675);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.btn-gold:hover {
+  box-shadow: 0 16px 40px rgba(199, 160, 91, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-gold:hover::before {
+  opacity: 1;
+}
+
+.portfolio-orbit {
+  animation: orbit 26s linear infinite;
+}
+
+.portfolio-glow {
+  animation: breathe 7s ease-in-out infinite;
+}
+
+.scroll-cue {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.075) translate3d(-0.6%, -0.4%, 0);
+  }
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.34;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes scroll-cue {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-title {
+    letter-spacing: -0.055em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
