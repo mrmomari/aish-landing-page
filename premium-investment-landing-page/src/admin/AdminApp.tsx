@@ -40,7 +40,7 @@ export default function AdminApp() {
 
   if (checking) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0b0f12] text-white/50">
+      <div className="flex min-h-screen items-center justify-center bg-[#f4f2ec] text-[#8b887e]">
         Loading…
       </div>
     );
@@ -51,7 +51,7 @@ export default function AdminApp() {
       <>
         <AdminLogin onAuthenticated={init} />
         {loadError && (
-          <p className="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-md bg-red-500/10 px-4 py-2 text-sm text-red-300">
+          <p className="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-md bg-red-100 px-4 py-2 text-sm text-red-700 shadow-md">
             {loadError}
           </p>
         )}
