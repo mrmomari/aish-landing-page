@@ -244,7 +244,7 @@ function brandParts(info: CompanyInfo | null) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
+    <div className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
       <span className="h-px w-7 bg-[#b99455]" />
       {children}
     </div>
@@ -376,7 +376,7 @@ function Hero({ info }: { info: CompanyInfo | null }) {
   return (
     <section
       id="home"
-      className="relative flex min-h-[760px] items-end overflow-hidden bg-[#f3f1eb] pb-16 pt-36 text-[#111518] sm:min-h-[820px] sm:pb-20 lg:min-h-[900px] lg:pb-24"
+      className="relative flex min-h-[500px] items-end overflow-hidden bg-[#f3f1eb] pb-10 pt-28 text-[#111518] sm:min-h-[540px] sm:pb-12 lg:min-h-[65vh] lg:pb-14"
     >
       <div
         className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] sm:bg-center"
@@ -407,16 +407,16 @@ function Hero({ info }: { info: CompanyInfo | null }) {
           </motion.div>
           <motion.h1
             variants={reveal}
-            className="hero-title max-w-4xl text-[clamp(3.25rem,10vw,8.2rem)] font-medium uppercase leading-[0.82] tracking-[-0.065em]"
+            className="hero-title max-w-4xl text-[clamp(2.5rem,7vw,5.5rem)] font-medium uppercase leading-[0.85] tracking-[-0.055em]"
           >
             {brand.headlineLead && <span className="block">{brand.headlineLead}</span>}
             <span className="gold-text block">{brand.headlineLast}</span>
           </motion.h1>
           <motion.div
             variants={reveal}
-            className="mt-8 max-w-2xl border-l border-[#c7a463]/70 pl-5 sm:mt-10 sm:pl-7"
+            className="mt-5 max-w-2xl border-l border-[#c7a463]/70 pl-5 sm:mt-6 sm:pl-6"
           >
-            <p className="text-xl font-light leading-snug text-[#111518] sm:text-2xl lg:text-[30px]">
+            <p className="text-lg font-light leading-snug text-[#111518] sm:text-xl lg:text-2xl">
               {info?.tagline || "We build the companies shaping what comes next."}
             </p>
             <p className="mt-3 max-w-xl text-sm leading-6 text-[#5d5c55] sm:text-base sm:leading-7">
@@ -424,7 +424,7 @@ function Hero({ info }: { info: CompanyInfo | null }) {
                 "A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects."}
             </p>
           </motion.div>
-          <motion.div variants={reveal} className="mt-8 flex flex-wrap gap-3 sm:mt-10">
+          <motion.div variants={reveal} className="mt-6 flex flex-wrap gap-3">
             <a
               href="#portfolio"
               className="btn-gold group inline-flex items-center gap-3 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.13em] text-[#0b0f12] sm:px-7"
@@ -460,7 +460,7 @@ function SocialProof() {
   const audiences = ["Family offices", "Institutions", "Founders", "Public-sector partners"];
 
   return (
-    <section id="proof" className="border-b border-[#d9d4c8] bg-[#f3f1eb] py-12 sm:py-16">
+    <section id="proof" className="border-b border-[#d9d4c8] bg-[#f3f1eb] py-8 sm:py-10">
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -471,11 +471,11 @@ function SocialProof() {
         <motion.p variants={reveal} className="text-center text-[10px] font-semibold uppercase tracking-[0.26em] text-[#7a766e]">
           Built for long-term alignment with
         </motion.p>
-        <motion.div variants={reveal} className="mt-8 grid grid-cols-2 border-y border-[#d3cec3] lg:grid-cols-4">
+        <motion.div variants={reveal} className="mt-5 grid grid-cols-2 border-y border-[#d3cec3] lg:grid-cols-4">
           {audiences.map((audience, index) => (
             <div
               key={audience}
-              className={`flex min-h-20 items-center justify-center px-3 text-center font-serif text-base text-[#252a2e] sm:text-xl lg:min-h-24 ${
+              className={`flex min-h-14 items-center justify-center px-3 text-center font-serif text-base text-[#252a2e] sm:text-lg lg:min-h-16 ${
                 index % 2 !== 0 ? "border-l border-[#d3cec3]" : ""
               } ${index > 1 ? "border-t border-[#d3cec3] lg:border-t-0" : ""} ${
                 index > 1 ? "lg:border-l" : ""
@@ -502,14 +502,14 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
   ];
 
   return (
-    <section id="company" className="bg-[#f3f1eb] py-20 sm:py-24">
+    <section id="company" className="bg-[#f3f1eb] py-10 sm:py-12">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           variants={reveal}
-          className="grid gap-10 border border-[#d3cec3] bg-white/60 p-8 sm:p-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 lg:p-14"
+          className="grid gap-6 border border-[#d3cec3] bg-white/60 p-6 sm:p-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-10 lg:p-8"
         >
           <div>
             <SectionLabel>Company information</SectionLabel>
@@ -544,21 +544,21 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
 
 function Approach() {
   return (
-    <section id="approach" className="bg-[#f3f1eb] py-24 sm:py-32 lg:py-40">
+    <section id="approach" className="bg-[#f3f1eb] py-12 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           variants={reveal}
-          className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20"
+          className="grid gap-4 lg:grid-cols-[.8fr_1.2fr] lg:gap-10"
         >
           <SectionLabel>Our approach</SectionLabel>
           <div>
-            <h2 className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-[#111518] sm:text-5xl lg:text-7xl">
+            <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
               Enduring value is built, not traded.
             </h2>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
               We pair the perspective of a permanent owner with the energy of a builder, creating a shared platform where strong companies can move further, faster.
             </p>
           </div>
@@ -569,7 +569,7 @@ function Approach() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="mt-20 grid border-t border-[#cfc9bd] lg:mt-28 lg:grid-cols-3"
+          className="mt-10 grid border-t border-[#cfc9bd] lg:mt-12 lg:grid-cols-3"
         >
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
@@ -577,7 +577,7 @@ function Approach() {
               <motion.article
                 variants={reveal}
                 key={pillar.title}
-                className={`group relative py-10 lg:min-h-[360px] lg:px-9 lg:py-12 ${
+                className={`group relative py-6 lg:px-7 lg:py-7 ${
                   index > 0 ? "border-t border-[#cfc9bd] lg:border-l lg:border-t-0" : ""
                 }`}
               >
@@ -585,9 +585,9 @@ function Approach() {
                   <span className="font-mono text-xs text-[#938f86]">{pillar.number}</span>
                   <Icon className="h-6 w-6 stroke-[1.3] text-[#a88148] transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3" />
                 </div>
-                <div className="mt-20 lg:mt-32">
-                  <h3 className="text-2xl font-medium tracking-[-0.03em] text-[#181c1f]">{pillar.title}</h3>
-                  <p className="mt-4 max-w-sm text-sm leading-7 text-[#696862]">{pillar.copy}</p>
+                <div className="mt-8 lg:mt-10">
+                  <h3 className="text-xl font-medium tracking-[-0.03em] text-[#181c1f]">{pillar.title}</h3>
+                  <p className="mt-2.5 max-w-sm text-sm leading-6 text-[#696862]">{pillar.copy}</p>
                 </div>
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-[#aa824b] transition-all duration-700 group-hover:w-full" />
               </motion.article>
@@ -613,20 +613,20 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           variants={reveal}
-          className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-20"
+          className="grid gap-4 lg:grid-cols-[.8fr_1.2fr] lg:gap-10"
         >
           <SectionLabel>Holding companies</SectionLabel>
           <div>
-            <h2 className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
+            <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
               One platform. Multiple paths to progress.
             </h2>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
               Explore the active companies and future projects that translate our long-term investment themes into focused operating platforms.
             </p>
           </div>
         </motion.div>
 
-        <div className="mt-16 grid border-y border-[#ddd8cc] lg:mt-24 lg:grid-cols-[.72fr_1.28fr]">
+        <div className="mt-8 grid border-y border-[#ddd8cc] lg:mt-10 lg:grid-cols-[.72fr_1.28fr]">
           <div className="border-b border-[#ddd8cc] py-3 lg:border-b-0 lg:border-r lg:py-6">
             {holdings.map((item, index) => (
               <button
@@ -634,7 +634,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                 type="button"
                 onClick={() => setSelected(index)}
                 aria-pressed={selected === index}
-                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-[#e7e2d5] px-2 py-5 text-left last:border-b-0 sm:px-5 lg:px-7 lg:py-6"
+                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-[#e7e2d5] px-2 py-3.5 text-left last:border-b-0 sm:px-4 lg:px-5 lg:py-4"
               >
                 {selected === index && (
                   <motion.span
@@ -668,7 +668,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
             ))}
           </div>
 
-          <div className="relative min-h-[640px] overflow-hidden sm:min-h-[600px] lg:min-h-[680px]">
+          <div className="relative min-h-[440px] overflow-hidden lg:min-h-[480px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={company.id}
@@ -676,7 +676,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.42, ease: "easeOut" }}
-                className="relative flex h-full min-h-[640px] flex-col justify-between p-6 sm:min-h-[600px] sm:p-10 lg:min-h-[680px] lg:p-14"
+                className="relative flex h-full min-h-[440px] flex-col justify-between p-5 sm:p-7 lg:min-h-[480px] lg:p-8"
               >
                 <div
                   className="portfolio-glow absolute -right-32 -top-36 h-[480px] w-[480px] rounded-full opacity-20 blur-3xl"
@@ -702,16 +702,28 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   </span>
                 </div>
 
-                <div className="relative mt-36 max-w-xl sm:mt-28 lg:mt-36">
+                <div className="relative mt-10 max-w-xl lg:mt-12">
                   {!company.logo_url && (
-                    <p className="-mb-5 font-serif text-6xl text-[#111518]/10 sm:-mb-8 sm:text-8xl">{company.short_code}</p>
+                    <p className="-mb-4 font-serif text-5xl text-[#111518]/10 sm:-mb-6 sm:text-7xl">{company.short_code}</p>
                   )}
-                  <h3 className="text-3xl font-medium leading-tight tracking-[-0.035em] sm:text-5xl">
+                  <h3 className="text-2xl font-medium leading-tight tracking-[-0.035em] sm:text-3xl">
                     {company.headline}
                   </h3>
-                  <p className="mt-6 max-w-lg text-sm leading-7 text-[#65645f] sm:text-base">{company.description}</p>
+                  <p className="mt-3 max-w-lg text-sm leading-6 text-[#65645f]">{company.description}</p>
+                  {company.photos.length > 0 && (
+                    <div className="mt-4 flex gap-2.5 overflow-x-auto pb-1">
+                      {company.photos.map((url) => (
+                        <img
+                          key={url}
+                          src={url}
+                          alt={`${company.name} photo`}
+                          className="h-20 w-30 shrink-0 rounded-md border border-[#ddd8cc] object-cover sm:h-24 sm:w-36"
+                        />
+                      ))}
+                    </div>
+                  )}
                   {(company.contact_email || company.contact_phone) && (
-                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6d685c]">
+                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6d685c]">
                       {company.contact_email && (
                         <a href={`mailto:${company.contact_email}`} className="flex items-center gap-2 hover:text-[#111518]">
                           <Mail className="h-3.5 w-3.5" /> {company.contact_email}
@@ -726,7 +738,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   )}
                 </div>
 
-                <div className="relative mt-16 flex flex-wrap items-end justify-between gap-8 border-t border-[#ddd8cc] pt-7">
+                <div className="relative mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-[#ddd8cc] pt-5">
                   <div className="flex flex-wrap gap-x-7 gap-y-3">
                     {company.focus_tags.map((focus) => (
                       <span key={focus} className="flex items-center gap-2 text-xs text-[#4f504c]">
@@ -767,7 +779,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
 function Benefits() {
   return (
     <section className="bg-[#d5b575] py-24 text-[#101416] sm:py-32 lg:py-40">
-      <div className="mx-auto grid max-w-[1440px] gap-16 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-24 lg:px-12">
+      <div className="mx-auto grid max-w-[1440px] gap-8 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-12 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -779,10 +791,10 @@ function Benefits() {
             <span className="h-px w-7 bg-[#5f492a]" />
             The AISH advantage
           </div>
-          <h2 className="max-w-xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
+          <h2 className="max-w-xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
             Built to make ambition executable.
           </h2>
-          <p className="mt-7 max-w-lg text-base leading-7 text-[#4f422e] sm:text-lg sm:leading-8">
+          <p className="mt-4 max-w-lg text-base leading-7 text-[#4f422e]">
             The strongest partnerships combine aligned capital, decisive governance, and capabilities that turn potential into performance.
           </p>
         </motion.div>
@@ -800,15 +812,15 @@ function Benefits() {
               <motion.div
                 variants={reveal}
                 key={advantage.title}
-                className="group grid gap-5 border-b border-[#8e713f]/45 py-8 sm:grid-cols-[auto_1fr] sm:gap-8 sm:py-10"
+                className="group grid gap-4 border-b border-[#8e713f]/45 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:py-6"
               >
                 <div className="flex items-center gap-5 sm:block">
                   <span className="font-mono text-[11px] text-[#624c2d]">0{index + 1}</span>
-                  <Icon className="mt-0 h-6 w-6 stroke-[1.35] text-[#513b1f] transition-transform duration-500 group-hover:rotate-6 sm:mt-7" />
+                  <Icon className="mt-0 h-6 w-6 stroke-[1.35] text-[#513b1f] transition-transform duration-500 group-hover:rotate-6 sm:mt-4" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-medium tracking-[-0.03em] sm:text-3xl">{advantage.title}</h3>
-                  <p className="mt-3 max-w-lg text-sm leading-7 text-[#514631] sm:text-base">{advantage.copy}</p>
+                  <h3 className="text-xl font-medium tracking-[-0.03em] sm:text-2xl">{advantage.title}</h3>
+                  <p className="mt-2 max-w-lg text-sm leading-6 text-[#514631]">{advantage.copy}</p>
                 </div>
               </motion.div>
             );
@@ -828,17 +840,17 @@ function Testimonials() {
   };
 
   return (
-    <section id="perspectives" className="bg-[#f3f1eb] py-24 sm:py-32 lg:py-40">
+    <section id="perspectives" className="bg-[#f3f1eb] py-12 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           variants={reveal}
-          className="grid gap-8 lg:grid-cols-[.55fr_1.45fr] lg:gap-20"
+          className="grid gap-4 lg:grid-cols-[.55fr_1.45fr] lg:gap-10"
         >
           <SectionLabel>Partner perspectives</SectionLabel>
-          <h2 className="max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-[#111518] sm:text-5xl lg:text-7xl">
+          <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
             Alignment you can feel in every decision.
           </h2>
         </motion.div>
@@ -848,10 +860,10 @@ function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8 }}
-          className="mt-16 border-y border-[#cbc5b8] py-10 sm:mt-20 sm:py-14 lg:ml-[24%] lg:mt-24 lg:py-16"
+          className="mt-8 border-y border-[#cbc5b8] py-6 sm:py-8 lg:ml-[24%] lg:mt-10"
         >
-          <div className="grid gap-10 sm:grid-cols-[auto_1fr] sm:gap-12">
-            <span className="font-serif text-7xl leading-none text-[#b68e53] sm:text-8xl">&ldquo;</span>
+          <div className="grid gap-6 sm:grid-cols-[auto_1fr] sm:gap-8">
+            <span className="font-serif text-6xl leading-none text-[#b68e53] sm:text-7xl">&ldquo;</span>
             <div>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -861,17 +873,17 @@ function Testimonials() {
                   exit={{ opacity: 0, x: -18 }}
                   transition={{ duration: 0.36 }}
                 >
-                  <blockquote className="max-w-4xl text-2xl font-light leading-snug tracking-[-0.025em] text-[#1b2023] sm:text-3xl lg:text-4xl lg:leading-snug">
+                  <blockquote className="max-w-4xl text-xl font-light leading-snug tracking-[-0.025em] text-[#1b2023] sm:text-2xl lg:text-3xl lg:leading-snug">
                     {testimonial.quote}
                   </blockquote>
-                  <div className="mt-9">
+                  <div className="mt-5">
                     <p className="text-sm font-semibold text-[#252a2d]">{testimonial.role}</p>
                     <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#827e75]">{testimonial.company}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              <div className="mt-10 flex items-center justify-between">
+              <div className="mt-6 flex items-center justify-between">
                 <div className="flex gap-2" aria-label="Testimonial pagination">
                   {testimonials.map((_, index) => (
                     <button
@@ -913,7 +925,7 @@ function Testimonials() {
 
 function Partnerships() {
   return (
-    <section id="partnerships" className="bg-[#e9e6de] py-24 sm:py-32 lg:py-40">
+    <section id="partnerships" className="bg-[#e9e6de] py-12 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -927,10 +939,10 @@ function Partnerships() {
             Partnership pathways
             <span className="h-px w-7 bg-[#b99455]" />
           </div>
-          <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-[#111518] sm:text-5xl lg:text-7xl">
+          <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
             Flexible structures. Clear alignment.
           </h2>
-          <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-[#66645e] sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#66645e] sm:text-lg sm:leading-8">
             Three ways to partner with our platform, each shaped around shared conviction and measurable outcomes.
           </p>
         </motion.div>
@@ -940,13 +952,13 @@ function Partnerships() {
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
           variants={stagger}
-          className="mt-16 grid border-t border-[#c8c2b7] lg:mt-24 lg:grid-cols-3"
+          className="mt-8 grid border-t border-[#c8c2b7] lg:mt-10 lg:grid-cols-3"
         >
           {pathways.map((pathway, index) => (
             <motion.article
               variants={reveal}
               key={pathway.name}
-              className={`relative flex min-h-[590px] flex-col border-b border-[#c8c2b7] px-2 py-10 sm:px-8 lg:px-9 lg:py-12 ${
+              className={`relative flex flex-col border-b border-[#c8c2b7] px-2 py-6 sm:px-6 lg:px-7 lg:py-7 ${
                 index > 0 ? "lg:border-l" : ""
               } ${pathway.featured ? "bg-white text-[#14191c] shadow-[0_28px_80px_rgba(70,55,25,0.12)] ring-1 ring-[#c2a05e]" : "text-[#14191c]"}`}
             >
@@ -958,14 +970,14 @@ function Partnerships() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#77736b]">
                 0{index + 1} / {pathway.name}
               </p>
-              <div className="mt-14">
-                <p className="text-4xl font-medium tracking-[-0.04em] sm:text-5xl">{pathway.price}</p>
-                {pathway.suffix && <p className="mt-2 text-xs text-[#77736b]">{pathway.suffix}</p>}
-                <p className="mt-7 min-h-[84px] text-sm leading-7 text-[#68665f]">
+              <div className="mt-7">
+                <p className="text-3xl font-medium tracking-[-0.04em] sm:text-4xl">{pathway.price}</p>
+                {pathway.suffix && <p className="mt-1.5 text-xs text-[#77736b]">{pathway.suffix}</p>}
+                <p className="mt-4 text-sm leading-6 text-[#68665f]">
                   {pathway.description}
                 </p>
               </div>
-              <ul className="mt-9 space-y-4 border-t border-[#cbc5ba] pt-8">
+              <ul className="mt-5 space-y-2.5 border-t border-[#cbc5ba] pt-5">
                 {pathway.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm text-[#4f504c]">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#9b753d]" />
@@ -975,7 +987,7 @@ function Partnerships() {
               </ul>
               <a
                 href="#contact"
-                className={`group mt-auto flex items-center justify-between border px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.13em] transition-all ${
+                className={`group mt-6 flex items-center justify-between border px-5 py-3.5 text-[11px] font-semibold uppercase tracking-[0.13em] transition-all ${
                   pathway.featured
                     ? "border-[#d6b878] bg-[#d6b878] text-[#111518] hover:bg-[#ecd29b]"
                     : "border-[#999287] hover:border-[#13181b] hover:bg-[#13181b] hover:text-white"
@@ -1000,7 +1012,7 @@ function FAQ() {
 
   return (
     <section className="bg-[#f3f1eb] py-24 text-[#111518] sm:py-32 lg:py-40">
-      <div className="mx-auto grid max-w-[1440px] gap-16 px-5 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-24 lg:px-12">
+      <div className="mx-auto grid max-w-[1440px] gap-8 px-5 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-12 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -1009,10 +1021,10 @@ function FAQ() {
           className="lg:sticky lg:top-32 lg:self-start"
         >
           <SectionLabel>Frequently asked</SectionLabel>
-          <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-7xl">
+          <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
             Clarity before the conversation.
           </h2>
-          <p className="mt-7 max-w-md text-base leading-7 text-[#65645f]">
+          <p className="mt-4 max-w-md text-base leading-7 text-[#65645f]">
             A concise view of how we invest, partner, and evaluate what comes next.
           </p>
         </motion.div>
@@ -1031,13 +1043,13 @@ function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? -1 : index)}
-                  className="group flex w-full items-start justify-between gap-6 py-7 text-left sm:py-9"
+                  className="group flex w-full items-start justify-between gap-6 py-4 text-left sm:py-5"
                   aria-expanded={isOpen}
                   aria-controls={`faq-${index}`}
                 >
                   <span className="flex gap-4 sm:gap-7">
                     <span className="mt-1 font-mono text-[10px] text-[#9b753d]">0{index + 1}</span>
-                    <span className="text-lg font-medium tracking-[-0.02em] text-[#1b2023] sm:text-xl">{faq.question}</span>
+                    <span className="text-base font-medium tracking-[-0.02em] text-[#1b2023] sm:text-lg">{faq.question}</span>
                   </span>
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-[#c5bfb3] transition-colors group-hover:border-[#9b753d]">
                     <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#9b753d]" : "text-[#6b6f75]"}`} />
@@ -1053,7 +1065,7 @@ function FAQ() {
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="max-w-2xl pb-8 pl-9 text-sm leading-7 text-[#65645f] sm:pb-10 sm:pl-14 sm:text-base sm:leading-8">
+                      <p className="max-w-2xl pb-5 pl-9 text-sm leading-6 text-[#65645f] sm:pb-6 sm:pl-14 sm:leading-7">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1071,7 +1083,7 @@ function FAQ() {
 function ContactCTA({ info }: { info: CompanyInfo | null }) {
   const contactEmail = info?.email || "info@allinvestments.ae";
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#e9e6de] py-24 text-[#111518] sm:py-32 lg:py-44">
+    <section id="contact" className="relative overflow-hidden bg-[#e9e6de] py-12 text-[#111518] sm:py-14 lg:py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(185,148,85,.2),transparent_28%),radial-gradient(circle_at_20%_100%,rgba(107,139,154,.12),transparent_30%)]" />
       <div className="grain absolute inset-0 opacity-30" />
       <motion.div
@@ -1094,10 +1106,10 @@ function ContactCTA({ info }: { info: CompanyInfo | null }) {
           <span className="h-px w-7 bg-[#9b753d]" />
           The next chapter
         </motion.div>
-        <motion.h2 variants={reveal} className="mt-8 max-w-5xl text-5xl font-medium leading-[.98] tracking-[-0.05em] sm:text-7xl lg:text-[104px]">
+        <motion.h2 variants={reveal} className="mt-5 max-w-5xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
           Let's build what the future will value.
         </motion.h2>
-        <motion.div variants={reveal} className="mt-12 flex flex-col gap-8 border-t border-[#c8c2b7] pt-9 sm:flex-row sm:items-center sm:justify-between">
+        <motion.div variants={reveal} className="mt-7 flex flex-col gap-5 border-t border-[#c8c2b7] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl text-sm leading-7 text-[#65645f] sm:text-base">
             Share an investment, company, or project with our team. If the ambition and alignment are right, we will take it from there.
           </p>
@@ -1122,8 +1134,8 @@ function Footer({ info }: { info: CompanyInfo | null }) {
 
   return (
     <footer className="border-t border-[#d3cec3] bg-[#eceae2] text-[#111518]">
-      <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-        <div className="grid gap-14 border-b border-[#d3cec3] pb-14 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-20 lg:pb-20">
+      <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12">
+        <div className="grid gap-8 border-b border-[#d3cec3] pb-8 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-12 lg:pb-10">
           <div>
             <a href="#home" className="inline-flex items-center gap-4" aria-label="Back to home">
               {info?.logo_url ? (
@@ -1138,14 +1150,14 @@ function Footer({ info }: { info: CompanyInfo | null }) {
                 )}
               </span>
             </a>
-            <p className="mt-7 max-w-md text-sm leading-7 text-[#6d6a61]">
+            <p className="mt-4 max-w-md text-sm leading-6 text-[#6d6a61]">
               Investing across generations, sectors, and frontiers to build companies of lasting relevance.
             </p>
           </div>
 
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Navigate</p>
-            <nav className="mt-6 space-y-4" aria-label="Footer navigation">
+            <nav className="mt-4 space-y-2.5" aria-label="Footer navigation">
               {navItems.map((item) => (
                 <a key={item.label} href={item.href} className="block w-fit text-sm text-[#565b57] transition-colors hover:text-[#111518]">
                   {item.label}
@@ -1156,7 +1168,7 @@ function Footer({ info }: { info: CompanyInfo | null }) {
 
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Contact</p>
-            <div className="mt-6 space-y-4 text-sm text-[#565b57]">
+            <div className="mt-4 space-y-2.5 text-sm text-[#565b57]">
               <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 transition-colors hover:text-[#111518]">
                 <Mail className="h-4 w-4 text-[#9b753d]" />
                 {contactEmail}
