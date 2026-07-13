@@ -28,36 +28,41 @@
       "website_url": "https://holy-land-tours-xi.vercel.app/en",
       "contact_email": "info@holylandexplorers.com",
       "contact_phone": "+1 (321) 888-0330",
-      "logo_url": "/aish-landing-page/uploads/holdings/1783964375083-4osqmm.png",
+      "logo_url": "/aish-landing-page/uploads/holdings/1783964729773-g36h5z.png",
       "accent_color": "#d8b36a",
       "focus_tags": [],
       "sort_order": 0,
       "visible": true,
       "photos": [
-        "/aish-landing-page/uploads/holdings/aish-capital/1783964543236-0x4y8e.png"
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964543236-0x4y8e.png",
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964756290-nd37ee.png",
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964776243-vxx7rg.png"
       ]
     },
     {
       "id": "aish-developments",
-      "name": "AISH Developments",
-      "short_code": "AD",
-      "sector": "Real estate & placemaking",
+      "name": "15fifteen15",
+      "short_code": "15",
+      "sector": "business acceleration",
       "stage": "Active",
-      "headline": "Places designed for how tomorrow lives.",
-      "description": "A development company focused on thoughtful mixed-use destinations, next-generation workspaces, and lasting urban value.",
-      "website_url": "",
-      "contact_email": "",
+      "headline": "15 Products. Zero Friction. Total Scale.",
+      "description": "Your Business Has Potential.\nWe Have The 15-Point Blueprint\nTo Unlock It.",
+      "website_url": "https://mrmomari.github.io/fifteen-pro/index.html",
+      "contact_email": "info@15fifteen15.com",
       "contact_phone": "",
-      "logo_url": null,
+      "logo_url": "/aish-landing-page/uploads/holdings/1783965187084-gpz470.png",
       "accent_color": "#9db8aa",
       "focus_tags": [
-        "Mixed-use",
-        "Commercial",
-        "Destination assets"
+        "Weak Brand Authority",
+        "Stagnant Client Reach",
+        "Operational Chaos"
       ],
       "sort_order": 1,
-      "visible": false,
-      "photos": []
+      "visible": true,
+      "photos": [
+        "/aish-landing-page/uploads/holdings/aish-developments/1783965148264-fpvl4j.png",
+        "/aish-landing-page/uploads/holdings/aish-developments/1783965156735-8jivri.png"
+      ]
     },
     {
       "id": "aish-digital",
