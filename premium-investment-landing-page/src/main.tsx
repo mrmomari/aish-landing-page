@@ -6,7 +6,7 @@ import AdminApp from "./admin/AdminApp";
 
 const isAdminRoute =
   new URLSearchParams(window.location.search).get("admin") === "1" ||
-  window.location.pathname.startsWith("/admin");
+  window.location.pathname.startsWith(`${import.meta.env.BASE_URL}admin`);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>{isAdminRoute ? <AdminApp /> : <App />}</StrictMode>
