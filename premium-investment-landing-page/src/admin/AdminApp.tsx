@@ -1,23 +1,44 @@
 import { useEffect, useState } from "react";
-import type { Session } from "@supabase/supabase-js";
-import { getSession, isAdminSession, onAuthChange } from "../lib/auth";
-import { ADMIN_EMAIL } from "../lib/supabase";
+import { clearToken, getToken, verifyToken } from "../lib/github";
+import { loadContent, publishContent } from "../lib/content";
+import type { SiteContent } from "../lib/types";
 import { AdminDashboard } from "./AdminDashboard";
 import { AdminLogin } from "./AdminLogin";
 
 export default function AdminApp() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [authed, setAuthed] = useState(false);
+  const [checking, setChecking] = useState(true);
+  const [content, setContent] = useState<SiteContent | null>(null);
+  const [loadError, setLoadError] = useState("");
+
+  const init = async () => {
+    setChecking(true);
+    setLoadError("");
+    const token = getToken();
+    if (!token) {
+      setAuthed(false);
+      setChecking(false);
+      return;
+    }
+    try {
+      await verifyToken(token);
+      setAuthed(true);
+      const loaded = await loadContent();
+      setContent(loaded);
+    } catch (err) {
+      clearToken();
+      setAuthed(false);
+      setLoadError(err instanceof Error ? err.message : "Failed to connect");
+    } finally {
+      setChecking(false);
+    }
+  };
 
   useEffect(() => {
-    getSession().then((s) => {
-      setSession(s);
-      setLoading(false);
-    });
-    return onAuthChange(setSession);
+    init();
   }, []);
 
-  if (loading) {
+  if (checking) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0b0f12] text-white/50">
         Loading…
@@ -25,20 +46,32 @@ export default function AdminApp() {
     );
   }
 
-  if (!session) return <AdminLogin />;
-
-  if (!isAdminSession(session)) {
+  if (!authed || !content) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0b0f12] px-6 text-center text-white">
-        <div>
-          <h1 className="text-2xl font-medium">Not authorized</h1>
-          <p className="mt-3 max-w-sm text-sm text-white/50">
-            Signed in as {session.user.email}, but this admin panel is restricted to {ADMIN_EMAIL}.
+      <>
+        <AdminLogin onAuthenticated={init} />
+        {loadError && (
+          <p className="fixed bottom-6 left-1/2 -translate-x-1/2 rounded-md bg-red-500/10 px-4 py-2 text-sm text-red-300">
+            {loadError}
           </p>
-        </div>
-      </div>
+        )}
+      </>
     );
   }
 
-  return <AdminDashboard />;
+  return (
+    <AdminDashboard
+      content={content}
+      onChange={setContent}
+      onPublish={async (next) => {
+        await publishContent(next);
+        setContent(next);
+      }}
+      onSignOut={() => {
+        clearToken();
+        setAuthed(false);
+        setContent(null);
+      }}
+    />
+  );
 }

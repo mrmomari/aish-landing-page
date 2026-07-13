@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { UploadCloud } from "lucide-react";
-import { uploadMediaFile } from "../lib/data";
+import { uploadImage } from "../lib/content";
 
 export function ImageUpload({
   folder,
@@ -22,7 +22,7 @@ export function ImageUpload({
     setError("");
     setUploading(true);
     try {
-      const url = await uploadMediaFile(file, folder);
+      const url = await uploadImage(file, folder);
       onUploaded(url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");

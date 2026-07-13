@@ -27,8 +27,10 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import { fetchCompanyInfo, fetchHoldings, fetchSections } from "./lib/data";
-import type { CompanyInfo, Holding, SectionKey } from "./lib/types";
+import siteContent from "./content.json";
+import type { CompanyInfo, Holding, SectionKey, SiteContent } from "./lib/types";
+
+const content = siteContent as SiteContent;
 
 const navItems = [
   { label: "Portfolio", href: "#portfolio" },
@@ -349,7 +351,10 @@ function Hero() {
       id="home"
       className="relative flex min-h-[760px] items-end overflow-hidden bg-[#0a0e11] pb-16 pt-36 text-white sm:min-h-[820px] sm:pb-20 lg:min-h-[900px] lg:pb-24"
     >
-      <div className="hero-kenburns absolute inset-0 bg-[url('/images/usa-future.jpg')] bg-cover bg-[62%_center] sm:bg-center" />
+      <div
+        className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] sm:bg-center"
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/usa-future.jpg)` }}
+      />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,12,.92)_0%,rgba(5,9,12,.68)_42%,rgba(5,9,12,.15)_75%),linear-gradient(0deg,rgba(5,9,12,.9)_0%,rgba(5,9,12,.12)_52%,rgba(5,9,12,.42)_100%)]" />
       <div className="grain absolute inset-0 opacity-30" />
       <motion.div
@@ -1145,25 +1150,17 @@ function Footer({ info }: { info: CompanyInfo | null }) {
 }
 
 function useSiteContent() {
-  const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
-  const [holdings, setHoldings] = useState<Holding[]>([]);
-  const [visibility, setVisibility] = useState<Partial<Record<SectionKey, boolean>>>({});
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    Promise.all([fetchCompanyInfo(), fetchHoldings(true), fetchSections()])
-      .then(([info, holdingsList, sections]) => {
-        setCompanyInfo(info);
-        setHoldings(holdingsList);
-        setVisibility(Object.fromEntries(sections.map((s) => [s.section_key, s.visible])));
-      })
-      .catch((err) => console.error("Failed to load site content", err))
-      .finally(() => setLoaded(true));
-  }, []);
+  const companyInfo: CompanyInfo = content.companyInfo;
+  const holdings: Holding[] = [...content.holdings]
+    .filter((h) => h.visible)
+    .sort((a, b) => a.sort_order - b.sort_order);
+  const visibility = Object.fromEntries(content.sections.map((s) => [s.section_key, s.visible])) as Partial<
+    Record<SectionKey, boolean>
+  >;
 
   const isVisible = (key: SectionKey) => visibility[key] ?? true;
 
-  return { companyInfo, holdings, isVisible, loaded };
+  return { companyInfo, holdings, isVisible };
 }
 
 export default function App() {

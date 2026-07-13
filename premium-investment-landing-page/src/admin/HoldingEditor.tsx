@@ -1,98 +1,82 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Trash2, X } from "lucide-react";
-import { addMedia, createHolding, deleteMedia, fetchMedia, updateHolding, uploadMediaFile } from "../lib/data";
-import type { Holding, HoldingMedia } from "../lib/types";
+import { uploadImage } from "../lib/content";
+import type { Holding } from "../lib/types";
 import { ImageUpload } from "./ImageUpload";
 
 const STAGES = ["Active", "In development", "Future project"];
 
-const emptyHolding: Partial<Holding> = {
-  name: "",
-  short_code: "",
-  sector: "",
-  stage: "Active",
-  headline: "",
-  description: "",
-  website_url: "",
-  contact_email: "",
-  contact_phone: "",
-  logo_url: null,
-  accent_color: "#d8b36a",
-  focus_tags: [],
-  visible: true,
-};
+function emptyHolding(sortOrder: number): Holding {
+  return {
+    id: crypto.randomUUID(),
+    name: "",
+    short_code: "",
+    sector: "",
+    stage: "Active",
+    headline: "",
+    description: "",
+    website_url: "",
+    contact_email: "",
+    contact_phone: "",
+    logo_url: null,
+    accent_color: "#d8b36a",
+    focus_tags: [],
+    sort_order: sortOrder,
+    visible: true,
+    photos: [],
+  };
+}
 
 export function HoldingEditor({
   holding,
   nextSortOrder,
   onClose,
-  onSaved,
+  onSave,
 }: {
   holding: Holding | null;
   nextSortOrder: number;
   onClose: () => void;
-  onSaved: () => void;
+  onSave: (holding: Holding) => void;
 }) {
-  const [form, setForm] = useState<Partial<Holding>>(holding ?? emptyHolding);
+  const [form, setForm] = useState<Holding>(holding ?? emptyHolding(nextSortOrder));
   const [focusTagsInput, setFocusTagsInput] = useState((holding?.focus_tags ?? []).join(", "));
-  const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-  const [media, setMedia] = useState<HoldingMedia[]>([]);
-  const [mediaUploading, setMediaUploading] = useState(false);
-
-  useEffect(() => {
-    if (holding?.id) {
-      fetchMedia(holding.id).then(setMedia);
-    }
-  }, [holding?.id]);
+  const [photoUploading, setPhotoUploading] = useState(false);
 
   const update = <K extends keyof Holding>(key: K, value: Holding[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
   };
 
-  const handleSave = async () => {
-    if (!form.name?.trim()) {
+  const handleSave = () => {
+    if (!form.name.trim()) {
       setError("Company name is required.");
       return;
     }
-    setSaving(true);
-    setError("");
-    const payload: Partial<Holding> = {
+    onSave({
       ...form,
       focus_tags: focusTagsInput
         .split(",")
         .map((t) => t.trim())
         .filter(Boolean),
-    };
-    try {
-      if (holding) {
-        await updateHolding(holding.id, payload);
-      } else {
-        await createHolding({ ...payload, sort_order: nextSortOrder });
-      }
-      onSaved();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Save failed");
-    } finally {
-      setSaving(false);
-    }
+    });
   };
 
   const handleAddPhoto = async (file: File | undefined) => {
-    if (!file || !holding) return;
-    setMediaUploading(true);
+    if (!file) return;
+    setPhotoUploading(true);
     try {
-      const url = await uploadMediaFile(file, `holdings/${holding.id}`);
-      const created = await addMedia({ holding_id: holding.id, url, sort_order: media.length });
-      setMedia((current) => [...current, created]);
+      const url = await uploadImage(file, `holdings/${form.id}`);
+      update("photos", [...form.photos, url]);
     } finally {
-      setMediaUploading(false);
+      setPhotoUploading(false);
     }
   };
 
-  const handleDeletePhoto = async (id: string) => {
-    await deleteMedia(id);
-    setMedia((current) => current.filter((m) => m.id !== id));
+  const handleRemovePhoto = (url: string) => {
+    update(
+      "photos",
+      form.photos.filter((p) => p !== url)
+    );
   };
 
   return (
@@ -118,7 +102,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Company name</label>
             <input
-              value={form.name ?? ""}
+              value={form.name}
               onChange={(e) => update("name", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -127,7 +111,7 @@ export function HoldingEditor({
             <label className="text-xs uppercase tracking-wide text-white/50">Short code (badge)</label>
             <input
               maxLength={3}
-              value={form.short_code ?? ""}
+              value={form.short_code}
               onChange={(e) => update("short_code", e.target.value.toUpperCase())}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -135,7 +119,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Sector</label>
             <input
-              value={form.sector ?? ""}
+              value={form.sector}
               onChange={(e) => update("sector", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -143,7 +127,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Stage</label>
             <select
-              value={form.stage ?? "Active"}
+              value={form.stage}
               onChange={(e) => update("stage", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             >
@@ -157,7 +141,7 @@ export function HoldingEditor({
           <div className="sm:col-span-2">
             <label className="text-xs uppercase tracking-wide text-white/50">Headline</label>
             <input
-              value={form.headline ?? ""}
+              value={form.headline}
               onChange={(e) => update("headline", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -166,7 +150,7 @@ export function HoldingEditor({
             <label className="text-xs uppercase tracking-wide text-white/50">Description</label>
             <textarea
               rows={3}
-              value={form.description ?? ""}
+              value={form.description}
               onChange={(e) => update("description", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -182,7 +166,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Website</label>
             <input
-              value={form.website_url ?? ""}
+              value={form.website_url}
               onChange={(e) => update("website_url", e.target.value)}
               placeholder="https://"
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
@@ -192,7 +176,7 @@ export function HoldingEditor({
             <label className="text-xs uppercase tracking-wide text-white/50">Accent color</label>
             <input
               type="color"
-              value={form.accent_color ?? "#d8b36a"}
+              value={form.accent_color}
               onChange={(e) => update("accent_color", e.target.value)}
               className="mt-2 h-11 w-full rounded-md border border-white/20 bg-white/5 px-2"
             />
@@ -200,7 +184,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Contact email</label>
             <input
-              value={form.contact_email ?? ""}
+              value={form.contact_email}
               onChange={(e) => update("contact_email", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -208,7 +192,7 @@ export function HoldingEditor({
           <div>
             <label className="text-xs uppercase tracking-wide text-white/50">Contact phone</label>
             <input
-              value={form.contact_phone ?? ""}
+              value={form.contact_phone}
               onChange={(e) => update("contact_phone", e.target.value)}
               className="mt-2 w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-[#d6b878]"
             />
@@ -216,7 +200,7 @@ export function HoldingEditor({
           <label className="flex items-center gap-3 text-sm text-white/80 sm:col-span-2">
             <input
               type="checkbox"
-              checked={form.visible ?? true}
+              checked={form.visible}
               onChange={(e) => update("visible", e.target.checked)}
               className="h-4 w-4"
             />
@@ -224,34 +208,32 @@ export function HoldingEditor({
           </label>
         </div>
 
-        {holding && (
-          <div className="mt-8 border-t border-white/10 pt-6">
-            <p className="text-xs uppercase tracking-wide text-white/50">Additional photos</p>
-            <div className="mt-3 flex flex-wrap gap-3">
-              {media.map((m) => (
-                <div key={m.id} className="group relative h-20 w-20 overflow-hidden rounded-md border border-white/15">
-                  <img src={m.url} alt={m.caption} className="h-full w-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => handleDeletePhoto(m.id)}
-                    className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity group-hover:opacity-100"
-                  >
-                    <Trash2 className="h-4 w-4 text-white" />
-                  </button>
-                </div>
-              ))}
-              <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-md border border-dashed border-white/25 text-xs text-white/50 hover:border-[#d6b878] hover:text-[#d6b878]">
-                {mediaUploading ? "…" : "+ Add"}
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => handleAddPhoto(e.target.files?.[0])}
-                />
-              </label>
-            </div>
+        <div className="mt-8 border-t border-white/10 pt-6">
+          <p className="text-xs uppercase tracking-wide text-white/50">Additional photos</p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            {form.photos.map((url) => (
+              <div key={url} className="group relative h-20 w-20 overflow-hidden rounded-md border border-white/15">
+                <img src={url} alt="" className="h-full w-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => handleRemovePhoto(url)}
+                  className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity group-hover:opacity-100"
+                >
+                  <Trash2 className="h-4 w-4 text-white" />
+                </button>
+              </div>
+            ))}
+            <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-md border border-dashed border-white/25 text-xs text-white/50 hover:border-[#d6b878] hover:text-[#d6b878]">
+              {photoUploading ? "…" : "+ Add"}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleAddPhoto(e.target.files?.[0])}
+              />
+            </label>
           </div>
-        )}
+        </div>
 
         {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
 
@@ -266,10 +248,9 @@ export function HoldingEditor({
           <button
             type="button"
             onClick={handleSave}
-            disabled={saving}
-            className="rounded-md bg-[#d6b878] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-[#111518] hover:opacity-90 disabled:opacity-50"
+            className="rounded-md bg-[#d6b878] px-6 py-3 text-sm font-semibold uppercase tracking-wide text-[#111518] hover:opacity-90"
           >
-            {saving ? "Saving…" : "Save holding"}
+            Save holding
           </button>
         </div>
       </div>

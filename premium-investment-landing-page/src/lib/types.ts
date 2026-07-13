@@ -1,5 +1,4 @@
 export interface CompanyInfo {
-  id: number;
   legal_name: string;
   display_name: string;
   tagline: string;
@@ -15,7 +14,6 @@ export interface CompanyInfo {
   website: string;
   registration_number: string;
   logo_url: string | null;
-  updated_at: string;
 }
 
 export interface Holding {
@@ -34,17 +32,7 @@ export interface Holding {
   focus_tags: string[];
   sort_order: number;
   visible: boolean;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface HoldingMedia {
-  id: string;
-  holding_id: string | null;
-  url: string;
-  caption: string;
-  sort_order: number;
-  created_at: string;
+  photos: string[];
 }
 
 export type SectionKey =
@@ -64,4 +52,10 @@ export interface SectionSetting {
   label: string;
   visible: boolean;
   sort_order: number;
+}
+
+export interface SiteContent {
+  companyInfo: CompanyInfo;
+  holdings: Holding[];
+  sections: SectionSetting[];
 }
