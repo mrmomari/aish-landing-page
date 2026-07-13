@@ -18,25 +18,24 @@
   },
   "holdings": [
     {
-      "id": "aish-capital",
-      "name": "Holy Land Travels & Tours",
-      "short_code": "HLT",
-      "sector": "Private markets",
+      "id": "aish-digital",
+      "name": "Abo Elseed USA أبو السيد",
+      "short_code": "AI",
+      "sector": "Premium certified Egyptian seafood products",
       "stage": "Active",
-      "headline": "About Holy Land Travels & Tours",
-      "description": "Holy Land Travels & Tours designs immersive cultural and pilgrimage journeys across the lands where history, faith, and tradition run deepest — from the Holy Land to Jordan, Egypt, Morocco, and beyond.\n\nWe specialize in small-group and church tours, pairing every journey with licensed local guides, thoughtfully paced itineraries, and dedicated coordination for group and ministry leaders — from the first inquiry to the last night abroad.\n\nEvery detail — flights, hotels, meals, and transportation — is handled so your group can focus on what matters: the journey itself.",
-      "website_url": "https://holy-land-tours-xi.vercel.app/en",
-      "contact_email": "info@holylandexplorers.com",
-      "contact_phone": "+1 (321) 888-0330",
-      "logo_url": "/aish-landing-page/uploads/holdings/1783964729773-g36h5z.png",
-      "accent_color": "#d8b36a",
+      "headline": "distributed to retailers, wholesalers, and foodservice operators across the United States and Canada.",
+      "description": "Premium certified Egyptian seafood products distributed to retailers, wholesalers, and foodservice operators across the United States and Canada.",
+      "website_url": "https://portal.aboelseedusa.com/website.html",
+      "contact_email": "admin@aboelseedusa.com",
+      "contact_phone": "",
+      "logo_url": "/aish-landing-page/uploads/holdings/1783969682724-127v13.jpg",
+      "accent_color": "#8aa9c7",
       "focus_tags": [],
       "sort_order": 0,
       "visible": true,
       "photos": [
-        "/aish-landing-page/uploads/holdings/aish-capital/1783964543236-0x4y8e.png",
-        "/aish-landing-page/uploads/holdings/aish-capital/1783964756290-nd37ee.png",
-        "/aish-landing-page/uploads/holdings/aish-capital/1783964776243-vxx7rg.png"
+        "/aish-landing-page/uploads/holdings/aish-digital/1783969873324-qqnjxw.jpg",
+        "/aish-landing-page/uploads/holdings/aish-digital/1783969907468-vvnl31.jpg"
       ]
     },
     {
@@ -65,26 +64,26 @@
       ]
     },
     {
-      "id": "aish-digital",
-      "name": "AISH Digital",
-      "short_code": "AI",
-      "sector": "Technology",
+      "id": "aish-capital",
+      "name": "Holy Land Travels & Tours",
+      "short_code": "HLT",
+      "sector": "Private markets",
       "stage": "Active",
-      "headline": "Digital infrastructure with enterprise ambition.",
-      "description": "We back and build practical AI, cloud, cybersecurity, and vertical software platforms for America's next era of growth.",
-      "website_url": "",
-      "contact_email": "",
-      "contact_phone": "",
-      "logo_url": null,
-      "accent_color": "#8aa9c7",
-      "focus_tags": [
-        "Applied AI",
-        "Cloud systems",
-        "Cybersecurity"
-      ],
+      "headline": "About Holy Land Travels & Tours",
+      "description": "Holy Land Travels & Tours designs immersive cultural and pilgrimage journeys across the lands where history, faith, and tradition run deepest — from the Holy Land to Jordan, Egypt, Morocco, and beyond.\n\nWe specialize in small-group and church tours, pairing every journey with licensed local guides, thoughtfully paced itineraries, and dedicated coordination for group and ministry leaders — from the first inquiry to the last night abroad.\n\nEvery detail — flights, hotels, meals, and transportation — is handled so your group can focus on what matters: the journey itself.",
+      "website_url": "https://holy-land-tours-xi.vercel.app/en",
+      "contact_email": "info@holylandexplorers.com",
+      "contact_phone": "+1 (321) 888-0330",
+      "logo_url": "/aish-landing-page/uploads/holdings/1783964729773-g36h5z.png",
+      "accent_color": "#d8b36a",
+      "focus_tags": [],
       "sort_order": 2,
-      "visible": false,
-      "photos": []
+      "visible": true,
+      "photos": [
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964543236-0x4y8e.png",
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964756290-nd37ee.png",
+        "/aish-landing-page/uploads/holdings/aish-capital/1783964776243-vxx7rg.png"
+      ]
     },
     {
       "id": "aish-energy",
@@ -105,50 +104,6 @@
         "Efficiency"
       ],
       "sort_order": 3,
-      "visible": false,
-      "photos": []
-    },
-    {
-      "id": "aish-mobility",
-      "name": "AISH Mobility",
-      "short_code": "AM",
-      "sector": "Future logistics",
-      "stage": "Future project",
-      "headline": "Moving goods and people with less friction.",
-      "description": "An emerging venture thesis spanning smart logistics, connected fleets, and the infrastructure behind intelligent mobility.",
-      "website_url": "",
-      "contact_email": "",
-      "contact_phone": "",
-      "logo_url": null,
-      "accent_color": "#c49e87",
-      "focus_tags": [
-        "Smart logistics",
-        "Connected fleets",
-        "Mobility data"
-      ],
-      "sort_order": 4,
-      "visible": false,
-      "photos": []
-    },
-    {
-      "id": "aish-hospitality",
-      "name": "AISH Hospitality",
-      "short_code": "AH",
-      "sector": "Hospitality & experiences",
-      "stage": "Future project",
-      "headline": "Distinctive experiences, built to endure.",
-      "description": "A planned collection of hospitality concepts rooted in place, cultural fluency, and a modern standard of service.",
-      "website_url": "",
-      "contact_email": "",
-      "contact_phone": "",
-      "logo_url": null,
-      "accent_color": "#b99678",
-      "focus_tags": [
-        "Lifestyle stays",
-        "Culinary concepts",
-        "Destination leisure"
-      ],
-      "sort_order": 5,
       "visible": false,
       "photos": []
     }
