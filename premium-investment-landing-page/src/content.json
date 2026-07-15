@@ -166,7 +166,7 @@
     {
       "section_key": "testimonials",
       "label": "Partner Perspectives",
-      "visible": false,
+      "visible": true,
       "sort_order": 6
     },
     {
