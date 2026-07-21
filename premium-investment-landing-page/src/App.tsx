@@ -204,23 +204,23 @@ function BrandMark({ className = "" }: { className?: string }) {
       />
       <path
         d="M13.5 31.5 22 23l5.1 5.1L39 10.5"
-        stroke="url(#brandGold)"
+        stroke="url(#brandBlue)"
         strokeWidth="4.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="m32.7 10.8 7-.9-.7 7"
-        stroke="url(#brandGold)"
+        stroke="url(#brandBlue)"
         strokeWidth="3.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <defs>
-        <linearGradient id="brandGold" x1="13" y1="32" x2="40" y2="10">
-          <stop stopColor="#9F7740" />
-          <stop offset="0.5" stopColor="#F2D699" />
-          <stop offset="1" stopColor="#B5884B" />
+        <linearGradient id="brandBlue" x1="13" y1="32" x2="40" y2="10">
+          <stop stopColor="#0071e3" />
+          <stop offset="0.5" stopColor="#2997ff" />
+          <stop offset="1" stopColor="#0066cc" />
         </linearGradient>
       </defs>
     </svg>
@@ -242,10 +242,14 @@ function brandParts(info: CompanyInfo | null) {
   };
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <div className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
-      <span className="h-px w-7 bg-[#b99455]" />
+    <div
+      className={`mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+        dark ? "text-[#2997ff]" : "text-[#0071e3]"
+      }`}
+    >
+      <span className={`h-px w-7 ${dark ? "bg-[#2997ff]" : "bg-[#0071e3]"}`} />
       {children}
     </div>
   );
@@ -267,43 +271,43 @@ function Header({ info }: { info: CompanyInfo | null }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled || isOpen
-          ? "border-b border-[#e0dbcf] bg-[#f3f1eb]/90 shadow-[0_8px_35px_rgba(30,26,16,.08)] backdrop-blur-xl"
-          : "bg-transparent"
+          ? "border-b border-white/10 bg-black/80 backdrop-blur-xl"
+          : "bg-gradient-to-b from-black/50 to-transparent"
       }`}
     >
-      <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <a
           href="#home"
-          className="group flex items-center gap-3 text-[#111518]"
+          className="group flex items-center gap-3 text-white"
           aria-label={`${brand.legal} home`}
         >
           {info?.logo_url ? (
             <img
               src={info.logo_url}
               alt=""
-              className="h-16 w-auto max-w-[220px] object-contain transition-transform duration-500 group-hover:scale-105"
+              className="h-9 w-auto max-w-[180px] object-contain transition-transform duration-500 group-hover:scale-105"
             />
           ) : (
-            <BrandMark className="h-10 w-10 text-[#a88148] transition-transform duration-500 group-hover:rotate-6" />
+            <BrandMark className="h-8 w-8 text-white transition-transform duration-500 group-hover:rotate-6" />
           )}
           <span className="leading-none">
-            <span className="block text-[13px] font-semibold tracking-[0.16em]">
-              {brand.name.toUpperCase()}
+            <span className="block text-[13px] font-semibold tracking-[0.04em]">
+              {brand.name}
             </span>
             {brand.suffix && (
-              <span className="mt-1 block text-[8px] font-medium tracking-[0.27em] text-[#111518]/55">
+              <span className="mt-0.5 block text-[9px] font-medium tracking-[0.2em] text-white/50">
                 {brand.suffix.toUpperCase()}
               </span>
             )}
           </span>
         </a>
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="nav-link text-[13px] font-medium text-[#111518]/70 transition-colors hover:text-[#111518]"
+              className="nav-link text-[13px] font-normal text-white/80 transition-colors hover:text-white"
             >
               {item.label}
             </a>
@@ -312,7 +316,7 @@ function Header({ info }: { info: CompanyInfo | null }) {
 
         <a
           href="#contact"
-          className="group hidden items-center gap-2 border border-[#111518]/30 px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#111518] transition-all hover:border-[#d9bd85] hover:bg-[#d9bd85] hover:text-[#111417] lg:flex"
+          className="btn-capsule btn-primary hidden items-center gap-2 px-5 py-2.5 text-[13px] font-medium lg:flex"
         >
           Start a conversation
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -320,7 +324,7 @@ function Header({ info }: { info: CompanyInfo | null }) {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-[#111518] lg:hidden"
+          className="flex h-11 w-11 items-center justify-center text-white lg:hidden"
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -339,7 +343,7 @@ function Header({ info }: { info: CompanyInfo | null }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="overflow-hidden border-t border-[#e0dbcf] bg-[#f3f1eb] lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-black lg:hidden"
           >
             <div className="space-y-1 px-5 py-6 sm:px-8">
               {navItems.map((item, index) => (
@@ -350,16 +354,16 @@ function Header({ info }: { info: CompanyInfo | null }) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.06 }}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between border-b border-[#ddd8cc] py-4 text-lg text-[#111518]"
+                  className="flex items-center justify-between border-b border-white/10 py-4 text-lg text-white"
                 >
                   {item.label}
-                  <ArrowUpRight className="h-4 w-4 text-[#c6a364]" />
+                  <ArrowUpRight className="h-4 w-4 text-[#2997ff]" />
                 </motion.a>
               ))}
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="mt-6 flex items-center justify-center gap-2 bg-[#d5b574] px-5 py-4 text-sm font-semibold text-[#0b0f12]"
+                className="btn-capsule btn-primary mt-6 flex items-center justify-center gap-2 px-5 py-4 text-sm font-medium"
               >
                 Start a conversation <ArrowRight className="h-4 w-4" />
               </a>
@@ -376,22 +380,16 @@ function Hero({ info }: { info: CompanyInfo | null }) {
   return (
     <section
       id="home"
-      className="relative flex min-h-[500px] items-end overflow-hidden bg-[#f3f1eb] pb-10 pt-28 text-[#111518] sm:min-h-[540px] sm:pb-12 lg:min-h-[65vh] lg:pb-14"
+      className="relative flex min-h-[560px] items-end overflow-hidden bg-black pb-12 pt-28 text-white sm:min-h-[620px] sm:pb-14 lg:min-h-[92vh] lg:pb-20"
     >
       <div
-        className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] sm:bg-center"
+        className="hero-kenburns absolute inset-0 bg-cover bg-[62%_center] opacity-55 sm:bg-center"
         style={{
           backgroundImage: `url(${info?.hero_image_url || `${import.meta.env.BASE_URL}images/usa-future.jpg`})`,
         }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(243,241,235,.96)_0%,rgba(243,241,235,.78)_42%,rgba(243,241,235,.2)_75%),linear-gradient(0deg,rgba(243,241,235,.94)_0%,rgba(243,241,235,.16)_52%,rgba(243,241,235,.5)_100%)]" />
-      <div className="grain absolute inset-0 opacity-30" />
-      <motion.div
-        aria-hidden="true"
-        className="absolute -right-24 top-28 h-72 w-72 rounded-full border border-[#a88148]/25"
-        animate={{ rotate: 360, scale: [1, 1.04, 1] }}
-        transition={{ rotate: { duration: 32, repeat: Infinity, ease: "linear" }, scale: { duration: 7, repeat: Infinity } }}
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,.97)_0%,rgba(0,0,0,.55)_45%,rgba(0,0,0,.25)_100%),linear-gradient(90deg,rgba(0,0,0,.8)_0%,rgba(0,0,0,.35)_55%,rgba(0,0,0,.1)_100%)]" />
+      <div className="grain absolute inset-0 opacity-20" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
@@ -402,41 +400,41 @@ function Hero({ info }: { info: CompanyInfo | null }) {
         >
           <motion.div
             variants={reveal}
-            className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-[#9b753d] sm:text-[11px]"
+            className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#2997ff]"
           >
-            <span className="h-px w-9 bg-[#b99455]" />
+            <span className="h-px w-9 bg-[#2997ff]" />
             {brand.legal}
           </motion.div>
           <motion.h1
             variants={reveal}
-            className="hero-title max-w-4xl text-[clamp(2.5rem,7vw,5.5rem)] font-medium uppercase leading-[0.85] tracking-[-0.055em]"
+            className="font-display hero-title max-w-4xl text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.03em]"
           >
             {brand.headlineLead && <span className="block">{brand.headlineLead}</span>}
-            <span className="gold-text block">{brand.headlineLast}</span>
+            <span className="block text-white">{brand.headlineLast}</span>
           </motion.h1>
           <motion.div
             variants={reveal}
-            className="mt-5 max-w-2xl border-l border-[#c7a463]/70 pl-5 sm:mt-6 sm:pl-6"
+            className="mt-6 max-w-2xl"
           >
-            <p className="text-lg font-light leading-snug text-[#111518] sm:text-xl lg:text-2xl">
+            <p className="text-lg font-normal leading-snug text-white/90 sm:text-xl lg:text-2xl">
               {info?.tagline || "We build the companies shaping what comes next."}
             </p>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-[#5d5c55] sm:text-base sm:leading-7">
+            <p className="mt-3 max-w-xl text-sm leading-6 text-white/60 sm:text-base sm:leading-7">
               {info?.description ||
                 "A U.S.-based holding group investing patient capital, operating expertise, and global perspective into ambitious businesses and future projects."}
             </p>
           </motion.div>
-          <motion.div variants={reveal} className="mt-6 flex flex-wrap gap-3">
+          <motion.div variants={reveal} className="mt-8 flex flex-wrap gap-3">
             <a
               href="#portfolio"
-              className="btn-gold group inline-flex items-center gap-3 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.13em] text-[#0b0f12] sm:px-7"
+              className="btn-capsule btn-primary group inline-flex items-center gap-3 px-7 py-4 text-[14px] font-medium"
             >
               Explore our portfolio
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 border border-[#111518]/35 px-6 py-4 text-[12px] font-semibold uppercase tracking-[0.13em] text-[#111518] transition-colors hover:border-[#111518] hover:bg-[#111518] hover:text-[#f3f1eb] sm:px-7"
+              className="btn-capsule btn-outline inline-flex items-center gap-3 px-7 py-4 text-[14px] font-medium"
             >
               Partner with us
             </a>
@@ -447,10 +445,10 @@ function Hero({ info }: { info: CompanyInfo | null }) {
       <a
         href="#proof"
         aria-label="Scroll to discover"
-        className="absolute bottom-7 right-5 z-10 hidden items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#111518]/55 transition-colors hover:text-[#111518] sm:flex lg:right-12"
+        className="absolute bottom-7 right-5 z-10 hidden items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/50 transition-colors hover:text-white sm:flex lg:right-12"
       >
         Discover
-        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#111518]/20">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
           <ChevronDown className="scroll-cue h-4 w-4" />
         </span>
       </a>
@@ -462,7 +460,7 @@ function SocialProof() {
   const audiences = ["Family offices", "Institutions", "Founders", "Public-sector partners"];
 
   return (
-    <section id="proof" className="border-b border-[#d9d4c8] bg-[#f3f1eb] py-8 sm:py-10">
+    <section id="proof" className="border-b border-[#d2d2d7] bg-white py-8 sm:py-10">
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -470,16 +468,16 @@ function SocialProof() {
         variants={stagger}
         className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"
       >
-        <motion.p variants={reveal} className="text-center text-[10px] font-semibold uppercase tracking-[0.26em] text-[#7a766e]">
+        <motion.p variants={reveal} className="text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-[#6e6e73]">
           Built for long-term alignment with
         </motion.p>
-        <motion.div variants={reveal} className="mt-5 grid grid-cols-2 border-y border-[#d3cec3] lg:grid-cols-4">
+        <motion.div variants={reveal} className="mt-5 grid grid-cols-2 border-y border-[#d2d2d7] lg:grid-cols-4">
           {audiences.map((audience, index) => (
             <div
               key={audience}
-              className={`flex min-h-14 items-center justify-center px-3 text-center font-serif text-base text-[#252a2e] sm:text-lg lg:min-h-16 ${
-                index % 2 !== 0 ? "border-l border-[#d3cec3]" : ""
-              } ${index > 1 ? "border-t border-[#d3cec3] lg:border-t-0" : ""} ${
+              className={`flex min-h-14 items-center justify-center px-3 text-center font-display text-base font-medium text-[#1d1d1f] sm:text-lg lg:min-h-16 ${
+                index % 2 !== 0 ? "border-l border-[#d2d2d7]" : ""
+              } ${index > 1 ? "border-t border-[#d2d2d7] lg:border-t-0" : ""} ${
                 index > 1 ? "lg:border-l" : ""
               }`}
             >
@@ -504,24 +502,24 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
   ];
 
   return (
-    <section id="company" className="bg-[#f3f1eb] py-10 sm:py-12">
+    <section id="company" className="bg-white py-10 sm:py-12">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
           variants={reveal}
-          className="grid gap-6 border border-[#d3cec3] bg-white/60 p-6 sm:p-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-10 lg:p-8"
+          className="grid gap-6 rounded-[18px] border border-[#d2d2d7] bg-white p-6 sm:p-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-10 lg:p-8"
         >
           <div>
             <SectionLabel>Company information</SectionLabel>
             {info.logo_url && (
               <img src={info.logo_url} alt={info.legal_name} className="mb-8 h-24 w-auto object-contain sm:h-28" />
             )}
-            <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.03em] text-[#111518] sm:text-4xl">
+            <h2 className="font-display text-3xl font-semibold leading-[1.08] tracking-[-0.02em] text-[#1d1d1f] sm:text-4xl">
               {info.legal_name}
             </h2>
-            {info.tagline && <p className="mt-4 text-base leading-7 text-[#65645f]">{info.tagline}</p>}
+            {info.tagline && <p className="mt-4 text-base leading-7 text-[#6e6e73]">{info.tagline}</p>}
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -529,10 +527,10 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
               const Icon = detail.icon;
               return (
                 <div key={detail.label} className="flex items-start gap-3">
-                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#9b753d]" />
+                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#0071e3]" />
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#928d82]">{detail.label}</p>
-                    <p className="mt-1 text-sm leading-6 text-[#2b2f32]">{detail.value}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#86868b]">{detail.label}</p>
+                    <p className="mt-1 text-sm leading-6 text-[#1d1d1f]">{detail.value}</p>
                   </div>
                 </div>
               );
@@ -546,7 +544,7 @@ function CompanyInfoSection({ info }: { info: CompanyInfo }) {
 
 function Approach() {
   return (
-    <section id="approach" className="bg-[#f3f1eb] py-12 sm:py-14 lg:py-16">
+    <section id="approach" className="bg-[#f5f5f7] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -557,10 +555,10 @@ function Approach() {
         >
           <SectionLabel>Our approach</SectionLabel>
           <div>
-            <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
+            <h2 className="font-display max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.02em] text-[#1d1d1f] sm:text-4xl lg:text-5xl">
               Enduring value is built, not traded.
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#6e6e73] sm:text-lg sm:leading-8">
               We pair the perspective of a permanent owner with the energy of a builder, creating a shared platform where strong companies can move further, faster.
             </p>
           </div>
@@ -571,7 +569,7 @@ function Approach() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="mt-10 grid border-t border-[#cfc9bd] lg:mt-12 lg:grid-cols-3"
+          className="mt-10 grid border-t border-[#d2d2d7] lg:mt-12 lg:grid-cols-3"
         >
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
@@ -579,19 +577,19 @@ function Approach() {
               <motion.article
                 variants={reveal}
                 key={pillar.title}
-                className={`group relative py-6 lg:px-7 lg:py-7 ${
-                  index > 0 ? "border-t border-[#cfc9bd] lg:border-l lg:border-t-0" : ""
+                className={`group relative rounded-none py-6 lg:px-7 lg:py-7 ${
+                  index > 0 ? "border-t border-[#d2d2d7] lg:border-l lg:border-t-0" : ""
                 }`}
               >
                 <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs text-[#938f86]">{pillar.number}</span>
-                  <Icon className="h-6 w-6 stroke-[1.3] text-[#a88148] transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3" />
+                  <span className="font-mono text-xs text-[#86868b]">{pillar.number}</span>
+                  <Icon className="h-6 w-6 stroke-[1.3] text-[#0071e3] transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3" />
                 </div>
                 <div className="mt-8 lg:mt-10">
-                  <h3 className="text-xl font-medium tracking-[-0.03em] text-[#181c1f]">{pillar.title}</h3>
-                  <p className="mt-2.5 max-w-sm text-sm leading-6 text-[#696862]">{pillar.copy}</p>
+                  <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-[#1d1d1f]">{pillar.title}</h3>
+                  <p className="mt-2.5 max-w-sm text-sm leading-6 text-[#6e6e73]">{pillar.copy}</p>
                 </div>
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-[#aa824b] transition-all duration-700 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-px w-0 bg-[#0071e3] transition-all duration-700 group-hover:w-full" />
               </motion.article>
             );
           })}
@@ -608,7 +606,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
   if (holdings.length === 0) return null;
 
   return (
-    <section id="portfolio" className="overflow-hidden bg-[#faf8f3] py-24 text-[#111518] sm:py-32 lg:py-40">
+    <section id="portfolio" className="overflow-hidden bg-white py-24 text-[#1d1d1f] sm:py-32 lg:py-40">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -619,36 +617,36 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
         >
           <SectionLabel>Holding companies</SectionLabel>
           <div>
-            <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+            <h2 className="font-display max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
               One platform. Multiple paths to progress.
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-[#65645f] sm:text-lg sm:leading-8">
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#6e6e73] sm:text-lg sm:leading-8">
               Explore the active companies and future projects that translate our long-term investment themes into focused operating platforms.
             </p>
           </div>
         </motion.div>
 
-        <div className="mt-8 grid border-y border-[#ddd8cc] lg:mt-10 lg:grid-cols-[.72fr_1.28fr]">
-          <div className="border-b border-[#ddd8cc] py-3 lg:border-b-0 lg:border-r lg:py-6">
+        <div className="mt-8 grid overflow-hidden rounded-[18px] border border-[#d2d2d7] lg:mt-10 lg:grid-cols-[.72fr_1.28fr]">
+          <div className="border-b border-[#d2d2d7] bg-[#f5f5f7] py-3 lg:border-b-0 lg:border-r lg:py-6">
             {holdings.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setSelected(index)}
                 aria-pressed={selected === index}
-                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-[#e7e2d5] px-2 py-3.5 text-left last:border-b-0 sm:px-4 lg:px-5 lg:py-4"
+                className="group relative flex w-full items-center justify-between overflow-hidden border-b border-[#d2d2d7] px-2 py-3.5 text-left last:border-b-0 sm:px-4 lg:px-5 lg:py-4"
               >
                 {selected === index && (
                   <motion.span
                     layoutId="company-active"
-                    className="absolute inset-0 bg-[#111518]/[0.045]"
+                    className="absolute inset-0 bg-white"
                     transition={{ type: "spring", stiffness: 280, damping: 30 }}
                   />
                 )}
                 <span className="relative flex items-center gap-4">
                   <span
-                    className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden border bg-white text-[11px] font-semibold tracking-[0.1em] transition-colors"
-                    style={{ borderColor: selected === index ? item.accent_color : "rgba(17,21,24,.2)", color: selected === index ? item.accent_color : "rgba(17,21,24,.5)" }}
+                    className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[12px] border bg-white text-[11px] font-semibold tracking-[0.06em] transition-colors"
+                    style={{ borderColor: selected === index ? item.accent_color : "rgba(29,29,31,.2)", color: selected === index ? item.accent_color : "rgba(29,29,31,.5)" }}
                   >
                     {item.logo_url ? (
                       <img src={item.logo_url} alt="" className="h-full w-full object-contain p-1" />
@@ -657,20 +655,20 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                     )}
                   </span>
                   <span>
-                    <span className={`block text-sm font-medium transition-colors sm:text-base ${selected === index ? "text-[#111518]" : "text-[#77746a] group-hover:text-[#111518]"}`}>
+                    <span className={`block text-sm font-medium transition-colors sm:text-base ${selected === index ? "text-[#1d1d1f]" : "text-[#6e6e73] group-hover:text-[#1d1d1f]"}`}>
                       {item.name}
                     </span>
-                    <span className="mt-1 block text-[10px] uppercase tracking-[0.16em] text-[#a29d91]">
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-[#86868b]">
                       {item.stage}
                     </span>
                   </span>
                 </span>
-                <ArrowRight className={`relative h-4 w-4 transition-all ${selected === index ? "translate-x-0 text-[#9b753d]" : "-translate-x-2 text-[#111518]/0 group-hover:translate-x-0 group-hover:text-[#111518]/70"}`} />
+                <ArrowRight className={`relative h-4 w-4 transition-all ${selected === index ? "translate-x-0 text-[#0071e3]" : "-translate-x-2 text-transparent group-hover:translate-x-0 group-hover:text-[#1d1d1f]/70"}`} />
               </button>
             ))}
           </div>
 
-          <div className="relative min-h-[440px] overflow-hidden lg:min-h-[480px]">
+          <div className="relative min-h-[440px] overflow-hidden bg-white lg:min-h-[480px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={company.id}
@@ -684,9 +682,9 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   className="portfolio-glow absolute -right-32 -top-36 h-[480px] w-[480px] rounded-full opacity-20 blur-3xl"
                   style={{ background: company.accent_color }}
                 />
-                <div className="portfolio-orbit absolute right-[-170px] top-16 h-[520px] w-[520px] rounded-full border border-[#111518]/10 sm:right-[-70px] lg:right-[-30px]">
-                  <div className="absolute inset-[15%] rounded-full border border-[#111518]/10" />
-                  <div className="absolute inset-[32%] rounded-full border border-[#111518]/10" />
+                <div className="portfolio-orbit absolute right-[-170px] top-16 h-[520px] w-[520px] rounded-full border border-[#d2d2d7] sm:right-[-70px] lg:right-[-30px]">
+                  <div className="absolute inset-[15%] rounded-full border border-[#d2d2d7]" />
+                  <div className="absolute inset-[32%] rounded-full border border-[#d2d2d7]" />
                   <span className="absolute left-1/2 top-[-4px] h-2 w-2 rounded-full" style={{ background: company.accent_color }} />
                 </div>
                 {company.logo_url && (
@@ -694,24 +692,24 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                     src={company.logo_url}
                     alt=""
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-[-60px] top-1/2 h-[340px] w-[340px] -translate-y-1/2 object-contain opacity-[0.08] sm:right-4 sm:h-[420px] sm:w-[420px] lg:right-16"
+                    className="pointer-events-none absolute right-[-60px] top-1/2 h-[340px] w-[340px] -translate-y-1/2 object-contain opacity-[0.06] sm:right-4 sm:h-[420px] sm:w-[420px] lg:right-16"
                   />
                 )}
                 <div className="relative flex items-center justify-between">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#847f73]">{company.sector}</p>
-                  <span className="font-mono text-xs text-[#a29d91]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6e6e73]">{company.sector}</p>
+                  <span className="font-mono text-xs text-[#86868b]">
                     {String(selected + 1).padStart(2, "0")} / {String(holdings.length).padStart(2, "0")}
                   </span>
                 </div>
 
                 <div className="relative mt-10 max-w-xl lg:mt-12">
                   {!company.logo_url && (
-                    <p className="-mb-4 font-serif text-5xl text-[#111518]/10 sm:-mb-6 sm:text-7xl">{company.short_code}</p>
+                    <p className="font-display -mb-4 text-5xl font-semibold text-[#1d1d1f]/10 sm:-mb-6 sm:text-7xl">{company.short_code}</p>
                   )}
-                  <h3 className="text-2xl font-medium leading-tight tracking-[-0.035em] sm:text-3xl">
+                  <h3 className="font-display text-2xl font-semibold leading-tight tracking-[-0.02em] sm:text-3xl">
                     {company.headline}
                   </h3>
-                  <p className="mt-3 max-w-lg text-sm leading-6 text-[#65645f]">{company.description}</p>
+                  <p className="mt-3 max-w-lg text-sm leading-6 text-[#6e6e73]">{company.description}</p>
                   {company.photos.length > 0 && (
                     <div className="mt-4 flex gap-2.5 overflow-x-auto pb-1">
                       {company.photos.map((url) => (
@@ -719,15 +717,15 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                           key={url}
                           src={url}
                           alt={`${company.name} photo`}
-                          className="h-20 w-30 shrink-0 rounded-md border border-[#ddd8cc] object-cover sm:h-24 sm:w-36"
+                          className="h-20 w-30 shrink-0 rounded-[12px] border border-[#d2d2d7] object-cover sm:h-24 sm:w-36"
                         />
                       ))}
                     </div>
                   )}
                   {(company.contact_email || company.contact_phone) && (
-                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6d685c]">
+                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6e6e73]">
                       {company.contact_email && (
-                        <a href={`mailto:${company.contact_email}`} className="flex items-center gap-2 hover:text-[#111518]">
+                        <a href={`mailto:${company.contact_email}`} className="flex items-center gap-2 hover:text-[#1d1d1f]">
                           <Mail className="h-3.5 w-3.5" /> {company.contact_email}
                         </a>
                       )}
@@ -740,10 +738,10 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   )}
                 </div>
 
-                <div className="relative mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-[#ddd8cc] pt-5">
+                <div className="relative mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-[#d2d2d7] pt-5">
                   <div className="flex flex-wrap gap-x-7 gap-y-3">
                     {company.focus_tags.map((focus) => (
-                      <span key={focus} className="flex items-center gap-2 text-xs text-[#4f504c]">
+                      <span key={focus} className="flex items-center gap-2 text-xs text-[#424245]">
                         <span className="h-1 w-1 rounded-full" style={{ background: company.accent_color }} />
                         {focus}
                       </span>
@@ -754,7 +752,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                       href={company.website_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#111518]"
+                      className="group flex items-center gap-2 text-[12px] font-semibold text-[#0066cc]"
                     >
                       Visit website
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -762,7 +760,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
                   ) : (
                     <a
                       href="#contact"
-                      className="group flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#111518]"
+                      className="group flex items-center gap-2 text-[12px] font-semibold text-[#0066cc]"
                     >
                       Enquire
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -780,7 +778,7 @@ function Portfolio({ holdings }: { holdings: Holding[] }) {
 
 function Benefits() {
   return (
-    <section className="bg-[#d5b575] py-24 text-[#101416] sm:py-32 lg:py-40">
+    <section className="bg-black py-24 text-white sm:py-32 lg:py-40">
       <div className="mx-auto grid max-w-[1440px] gap-8 px-5 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-12 lg:px-12">
         <motion.div
           initial="hidden"
@@ -789,14 +787,14 @@ function Benefits() {
           variants={reveal}
           className="lg:sticky lg:top-32 lg:self-start"
         >
-          <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#5f492a]">
-            <span className="h-px w-7 bg-[#5f492a]" />
+          <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2997ff]">
+            <span className="h-px w-7 bg-[#2997ff]" />
             The AISH advantage
           </div>
-          <h2 className="max-w-xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+          <h2 className="font-display max-w-xl text-3xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
             Built to make ambition executable.
           </h2>
-          <p className="mt-4 max-w-lg text-base leading-7 text-[#4f422e]">
+          <p className="mt-4 max-w-lg text-base leading-7 text-white/60">
             The strongest partnerships combine aligned capital, decisive governance, and capabilities that turn potential into performance.
           </p>
         </motion.div>
@@ -806,7 +804,7 @@ function Benefits() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="border-t border-[#8e713f]/45"
+          className="border-t border-white/15"
         >
           {advantages.map((advantage, index) => {
             const Icon = advantage.icon;
@@ -814,15 +812,15 @@ function Benefits() {
               <motion.div
                 variants={reveal}
                 key={advantage.title}
-                className="group grid gap-4 border-b border-[#8e713f]/45 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:py-6"
+                className="group grid gap-4 border-b border-white/15 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:py-6"
               >
                 <div className="flex items-center gap-5 sm:block">
-                  <span className="font-mono text-[11px] text-[#624c2d]">0{index + 1}</span>
-                  <Icon className="mt-0 h-6 w-6 stroke-[1.35] text-[#513b1f] transition-transform duration-500 group-hover:rotate-6 sm:mt-4" />
+                  <span className="font-mono text-[11px] text-white/40">0{index + 1}</span>
+                  <Icon className="mt-0 h-6 w-6 stroke-[1.35] text-[#2997ff] transition-transform duration-500 group-hover:rotate-6 sm:mt-4" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-medium tracking-[-0.03em] sm:text-2xl">{advantage.title}</h3>
-                  <p className="mt-2 max-w-lg text-sm leading-6 text-[#514631]">{advantage.copy}</p>
+                  <h3 className="font-display text-xl font-semibold tracking-[-0.02em] sm:text-2xl">{advantage.title}</h3>
+                  <p className="mt-2 max-w-lg text-sm leading-6 text-white/60">{advantage.copy}</p>
                 </div>
               </motion.div>
             );
@@ -842,7 +840,7 @@ function Testimonials() {
   };
 
   return (
-    <section id="perspectives" className="bg-[#f3f1eb] py-12 sm:py-14 lg:py-16">
+    <section id="perspectives" className="bg-[#f5f5f7] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -852,7 +850,7 @@ function Testimonials() {
           className="grid gap-4 lg:grid-cols-[.55fr_1.45fr] lg:gap-10"
         >
           <SectionLabel>Partner perspectives</SectionLabel>
-          <h2 className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
+          <h2 className="font-display max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.02em] text-[#1d1d1f] sm:text-4xl lg:text-5xl">
             Alignment you can feel in every decision.
           </h2>
         </motion.div>
@@ -862,10 +860,10 @@ function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8 }}
-          className="mt-8 border-y border-[#cbc5b8] py-6 sm:py-8 lg:ml-[24%] lg:mt-10"
+          className="mt-8 rounded-[18px] border border-[#d2d2d7] bg-white py-6 sm:py-8 lg:ml-[24%] lg:mt-10 lg:px-8"
         >
-          <div className="grid gap-6 sm:grid-cols-[auto_1fr] sm:gap-8">
-            <span className="font-serif text-6xl leading-none text-[#b68e53] sm:text-7xl">&ldquo;</span>
+          <div className="grid gap-6 px-6 sm:grid-cols-[auto_1fr] sm:gap-8 sm:px-8 lg:px-0">
+            <span className="font-display text-6xl leading-none text-[#0071e3] sm:text-7xl">&ldquo;</span>
             <div>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -875,12 +873,12 @@ function Testimonials() {
                   exit={{ opacity: 0, x: -18 }}
                   transition={{ duration: 0.36 }}
                 >
-                  <blockquote className="max-w-4xl text-xl font-light leading-snug tracking-[-0.025em] text-[#1b2023] sm:text-2xl lg:text-3xl lg:leading-snug">
+                  <blockquote className="max-w-4xl text-xl font-normal leading-snug tracking-[-0.01em] text-[#1d1d1f] sm:text-2xl lg:text-3xl lg:leading-snug">
                     {testimonial.quote}
                   </blockquote>
                   <div className="mt-5">
-                    <p className="text-sm font-semibold text-[#252a2d]">{testimonial.role}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#827e75]">{testimonial.company}</p>
+                    <p className="text-sm font-semibold text-[#1d1d1f]">{testimonial.role}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.1em] text-[#6e6e73]">{testimonial.company}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -892,7 +890,7 @@ function Testimonials() {
                       key={index}
                       type="button"
                       onClick={() => setActive(index)}
-                      className={`h-1 transition-all duration-300 ${active === index ? "w-9 bg-[#a77f47]" : "w-4 bg-[#c8c2b7] hover:bg-[#9a958b]"}`}
+                      className={`h-1 rounded-full transition-all duration-300 ${active === index ? "w-9 bg-[#0071e3]" : "w-4 bg-[#d2d2d7] hover:bg-[#86868b]"}`}
                       aria-label={`Show testimonial ${index + 1}`}
                       aria-current={active === index ? "true" : undefined}
                     />
@@ -902,7 +900,7 @@ function Testimonials() {
                   <button
                     type="button"
                     onClick={() => change(-1)}
-                    className="flex h-11 w-11 items-center justify-center border border-[#c5bfb3] transition-colors hover:border-[#191d20] hover:bg-[#191d20] hover:text-white"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d2d2d7] transition-colors hover:border-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white"
                     aria-label="Previous testimonial"
                   >
                     <ChevronLeft className="h-4 w-4" />
@@ -910,7 +908,7 @@ function Testimonials() {
                   <button
                     type="button"
                     onClick={() => change(1)}
-                    className="flex h-11 w-11 items-center justify-center border border-[#c5bfb3] transition-colors hover:border-[#191d20] hover:bg-[#191d20] hover:text-white"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d2d2d7] transition-colors hover:border-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white"
                     aria-label="Next testimonial"
                   >
                     <ChevronRight className="h-4 w-4" />
@@ -927,7 +925,7 @@ function Testimonials() {
 
 function Partnerships() {
   return (
-    <section id="partnerships" className="bg-[#e9e6de] py-12 sm:py-14 lg:py-16">
+    <section id="partnerships" className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
@@ -936,15 +934,15 @@ function Partnerships() {
           variants={reveal}
           className="mx-auto max-w-4xl text-center"
         >
-          <div className="mb-7 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
-            <span className="h-px w-7 bg-[#b99455]" />
+          <div className="mb-7 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0071e3]">
+            <span className="h-px w-7 bg-[#0071e3]" />
             Partnership pathways
-            <span className="h-px w-7 bg-[#b99455]" />
+            <span className="h-px w-7 bg-[#0071e3]" />
           </div>
-          <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-[#111518] sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-3xl font-semibold leading-[1.08] tracking-[-0.02em] text-[#1d1d1f] sm:text-4xl lg:text-5xl">
             Flexible structures. Clear alignment.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#66645e] sm:text-lg sm:leading-8">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#6e6e73] sm:text-lg sm:leading-8">
             Three ways to partner with our platform, each shaped around shared conviction and measurable outcomes.
           </p>
         </motion.div>
@@ -954,45 +952,45 @@ function Partnerships() {
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
           variants={stagger}
-          className="mt-8 grid border-t border-[#c8c2b7] lg:mt-10 lg:grid-cols-3"
+          className="mt-8 grid gap-5 sm:mt-10 lg:grid-cols-3"
         >
           {pathways.map((pathway, index) => (
             <motion.article
               variants={reveal}
               key={pathway.name}
-              className={`relative flex flex-col border-b border-[#c8c2b7] px-2 py-6 sm:px-6 lg:px-7 lg:py-7 ${
-                index > 0 ? "lg:border-l" : ""
-              } ${pathway.featured ? "bg-white text-[#14191c] shadow-[0_28px_80px_rgba(70,55,25,0.12)] ring-1 ring-[#c2a05e]" : "text-[#14191c]"}`}
+              className={`relative flex flex-col rounded-[18px] border px-5 py-6 sm:px-6 lg:px-7 lg:py-7 ${
+                pathway.featured
+                  ? "border-[#0071e3] bg-white text-[#1d1d1f] shadow-[0_20px_60px_rgba(0,113,227,0.14)] ring-1 ring-[#0071e3]"
+                  : "border-[#d2d2d7] text-[#1d1d1f]"
+              }`}
             >
               {pathway.featured && (
-                <span className="absolute right-5 top-5 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#9b753d]">
+                <span className="absolute right-5 top-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#0071e3]">
                   Preferred
                 </span>
               )}
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#77736b]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#86868b]">
                 0{index + 1} / {pathway.name}
               </p>
               <div className="mt-7">
-                <p className="text-3xl font-medium tracking-[-0.04em] sm:text-4xl">{pathway.price}</p>
-                {pathway.suffix && <p className="mt-1.5 text-xs text-[#77736b]">{pathway.suffix}</p>}
-                <p className="mt-4 text-sm leading-6 text-[#68665f]">
+                <p className="font-display text-3xl font-semibold tracking-[-0.02em] sm:text-4xl">{pathway.price}</p>
+                {pathway.suffix && <p className="mt-1.5 text-xs text-[#86868b]">{pathway.suffix}</p>}
+                <p className="mt-4 text-sm leading-6 text-[#6e6e73]">
                   {pathway.description}
                 </p>
               </div>
-              <ul className="mt-5 space-y-2.5 border-t border-[#cbc5ba] pt-5">
+              <ul className="mt-5 space-y-2.5 border-t border-[#d2d2d7] pt-5">
                 {pathway.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-[#4f504c]">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#9b753d]" />
+                  <li key={feature} className="flex items-start gap-3 text-sm text-[#424245]">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#0071e3]" />
                     {feature}
                   </li>
                 ))}
               </ul>
               <a
                 href="#contact"
-                className={`group mt-6 flex items-center justify-between border px-5 py-3.5 text-[11px] font-semibold uppercase tracking-[0.13em] transition-all ${
-                  pathway.featured
-                    ? "border-[#d6b878] bg-[#d6b878] text-[#111518] hover:bg-[#ecd29b]"
-                    : "border-[#999287] hover:border-[#13181b] hover:bg-[#13181b] hover:text-white"
+                className={`btn-capsule group mt-6 flex items-center justify-between px-5 py-3.5 text-[13px] font-medium transition-all ${
+                  pathway.featured ? "btn-primary" : "btn-outline-dark"
                 }`}
               >
                 {pathway.cta}
@@ -1001,7 +999,7 @@ function Partnerships() {
             </motion.article>
           ))}
         </motion.div>
-        <p className="mt-5 text-center text-[11px] leading-5 text-[#817d74]">
+        <p className="mt-5 text-center text-[11px] leading-5 text-[#86868b]">
           Structures and participation thresholds are indicative and subject to opportunity-specific diligence and terms.
         </p>
       </div>
@@ -1013,7 +1011,7 @@ function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-[#f3f1eb] py-24 text-[#111518] sm:py-32 lg:py-40">
+    <section className="bg-[#f5f5f7] py-24 text-[#1d1d1f] sm:py-32 lg:py-40">
       <div className="mx-auto grid max-w-[1440px] gap-8 px-5 sm:px-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-12 lg:px-12">
         <motion.div
           initial="hidden"
@@ -1023,10 +1021,10 @@ function FAQ() {
           className="lg:sticky lg:top-32 lg:self-start"
         >
           <SectionLabel>Frequently asked</SectionLabel>
-          <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-3xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-4xl lg:text-5xl">
             Clarity before the conversation.
           </h2>
-          <p className="mt-4 max-w-md text-base leading-7 text-[#65645f]">
+          <p className="mt-4 max-w-md text-base leading-7 text-[#6e6e73]">
             A concise view of how we invest, partner, and evaluate what comes next.
           </p>
         </motion.div>
@@ -1036,25 +1034,25 @@ function FAQ() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={stagger}
-          className="border-t border-[#cfc9bd]"
+          className="rounded-[18px] border border-[#d2d2d7] bg-white"
         >
           {faqs.map((faq, index) => {
             const isOpen = open === index;
             return (
-              <motion.div variants={reveal} key={faq.question} className="border-b border-[#cfc9bd]">
+              <motion.div variants={reveal} key={faq.question} className={index > 0 ? "border-t border-[#d2d2d7]" : ""}>
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? -1 : index)}
-                  className="group flex w-full items-start justify-between gap-6 py-4 text-left sm:py-5"
+                  className="group flex w-full items-start justify-between gap-6 px-5 py-4 text-left sm:px-7 sm:py-5"
                   aria-expanded={isOpen}
                   aria-controls={`faq-${index}`}
                 >
                   <span className="flex gap-4 sm:gap-7">
-                    <span className="mt-1 font-mono text-[10px] text-[#9b753d]">0{index + 1}</span>
-                    <span className="text-base font-medium tracking-[-0.02em] text-[#1b2023] sm:text-lg">{faq.question}</span>
+                    <span className="mt-1 font-mono text-[10px] text-[#0071e3]">0{index + 1}</span>
+                    <span className="text-base font-medium tracking-[-0.01em] text-[#1d1d1f] sm:text-lg">{faq.question}</span>
                   </span>
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-[#c5bfb3] transition-colors group-hover:border-[#9b753d]">
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#9b753d]" : "text-[#6b6f75]"}`} />
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d2d2d7] transition-colors group-hover:border-[#0071e3]">
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-[#0071e3]" : "text-[#6e6e73]"}`} />
                   </span>
                 </button>
                 <AnimatePresence initial={false}>
@@ -1067,7 +1065,7 @@ function FAQ() {
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="max-w-2xl pb-5 pl-9 text-sm leading-6 text-[#65645f] sm:pb-6 sm:pl-14 sm:leading-7">
+                      <p className="max-w-2xl px-5 pb-5 pl-14 text-sm leading-6 text-[#6e6e73] sm:px-7 sm:pb-6 sm:pl-20 sm:leading-7">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -1085,17 +1083,9 @@ function FAQ() {
 function ContactCTA({ info }: { info: CompanyInfo | null }) {
   const contactEmail = info?.email || "info@allinvestments.ae";
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#e9e6de] py-12 text-[#111518] sm:py-14 lg:py-16">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(185,148,85,.2),transparent_28%),radial-gradient(circle_at_20%_100%,rgba(107,139,154,.12),transparent_30%)]" />
-      <div className="grain absolute inset-0 opacity-30" />
-      <motion.div
-        aria-hidden="true"
-        className="absolute -right-20 -top-20 h-[420px] w-[420px] rounded-full border border-[#a88148]/25"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
-      >
-        <span className="absolute left-1/2 top-[-5px] h-2.5 w-2.5 rounded-full bg-[#a88148] shadow-[0_0_30px_rgba(168,129,72,.55)]" />
-      </motion.div>
+    <section id="contact" className="relative overflow-hidden bg-black py-16 text-white sm:py-20 lg:py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(0,113,227,.22),transparent_28%),radial-gradient(circle_at_20%_100%,rgba(41,151,255,.14),transparent_30%)]" />
+      <div className="grain absolute inset-0 opacity-20" />
 
       <motion.div
         initial="hidden"
@@ -1104,20 +1094,20 @@ function ContactCTA({ info }: { info: CompanyInfo | null }) {
         variants={stagger}
         className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"
       >
-        <motion.div variants={reveal} className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#9b753d]">
-          <span className="h-px w-7 bg-[#9b753d]" />
+        <motion.div variants={reveal} className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2997ff]">
+          <span className="h-px w-7 bg-[#2997ff]" />
           The next chapter
         </motion.div>
-        <motion.h2 variants={reveal} className="mt-5 max-w-5xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+        <motion.h2 variants={reveal} className="font-display mt-5 max-w-5xl text-4xl font-semibold leading-[1.04] tracking-[-0.02em] sm:text-5xl lg:text-6xl">
           Let's build what the future will value.
         </motion.h2>
-        <motion.div variants={reveal} className="mt-7 flex flex-col gap-5 border-t border-[#c8c2b7] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-7 text-[#65645f] sm:text-base">
+        <motion.div variants={reveal} className="mt-7 flex flex-col gap-5 border-t border-white/15 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-7 text-white/60 sm:text-base">
             Share an investment, company, or project with our team. If the ambition and alignment are right, we will take it from there.
           </p>
           <a
             href={`mailto:${contactEmail}?subject=Partnership%20enquiry`}
-            className="btn-gold group inline-flex w-fit items-center gap-4 px-7 py-5 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#0c1114]"
+            className="btn-capsule btn-primary group inline-flex w-fit items-center gap-4 px-7 py-4 text-[14px] font-medium"
           >
             Start a conversation
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
@@ -1135,33 +1125,33 @@ function Footer({ info }: { info: CompanyInfo | null }) {
   const location = [info?.city, info?.country].filter(Boolean).join(", ") || info?.country || "United States";
 
   return (
-    <footer className="border-t border-[#d3cec3] bg-[#eceae2] text-[#111518]">
+    <footer className="border-t border-[#d2d2d7] bg-[#f5f5f7] text-[#1d1d1f]">
       <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 sm:py-12 lg:px-12">
-        <div className="grid gap-8 border-b border-[#d3cec3] pb-8 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-12 lg:pb-10">
+        <div className="grid gap-8 border-b border-[#d2d2d7] pb-8 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-12 lg:pb-10">
           <div>
             <a href="#home" className="inline-flex items-center gap-4" aria-label="Back to home">
               {info?.logo_url ? (
-                <img src={info.logo_url} alt={legalName} className="h-14 w-14 object-contain" />
+                <img src={info.logo_url} alt={legalName} className="h-12 w-12 object-contain" />
               ) : (
-                <BrandMark className="h-14 w-14 text-[#a88148]" />
+                <BrandMark className="h-12 w-12 text-[#0071e3]" />
               )}
               <span>
-                <span className="block text-base font-semibold tracking-[0.15em]">{brand.name.toUpperCase()}</span>
+                <span className="block text-base font-semibold tracking-[0.04em]">{brand.name}</span>
                 {brand.suffix && (
-                  <span className="mt-1.5 block text-[9px] tracking-[0.28em] text-[#8a867b]">{brand.suffix.toUpperCase()}</span>
+                  <span className="mt-1 block text-[10px] tracking-[0.18em] text-[#86868b]">{brand.suffix.toUpperCase()}</span>
                 )}
               </span>
             </a>
-            <p className="mt-4 max-w-md text-sm leading-6 text-[#6d6a61]">
+            <p className="mt-4 max-w-md text-sm leading-6 text-[#6e6e73]">
               Investing across generations, sectors, and frontiers to build companies of lasting relevance.
             </p>
           </div>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Navigate</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#86868b]">Navigate</p>
             <nav className="mt-4 space-y-2.5" aria-label="Footer navigation">
               {navItems.map((item) => (
-                <a key={item.label} href={item.href} className="block w-fit text-sm text-[#565b57] transition-colors hover:text-[#111518]">
+                <a key={item.label} href={item.href} className="block w-fit text-sm text-[#424245] transition-colors hover:text-[#0066cc]">
                   {item.label}
                 </a>
               ))}
@@ -1169,30 +1159,30 @@ function Footer({ info }: { info: CompanyInfo | null }) {
           </div>
 
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#9b753d]">Contact</p>
-            <div className="mt-4 space-y-2.5 text-sm text-[#565b57]">
-              <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 transition-colors hover:text-[#111518]">
-                <Mail className="h-4 w-4 text-[#9b753d]" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#86868b]">Contact</p>
+            <div className="mt-4 space-y-2.5 text-sm text-[#424245]">
+              <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 transition-colors hover:text-[#0066cc]">
+                <Mail className="h-4 w-4 text-[#86868b]" />
                 {contactEmail}
               </a>
               <p className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-[#9b753d]" />
+                <MapPin className="h-4 w-4 text-[#86868b]" />
                 {location}
               </p>
-              <a href="#contact" className="flex items-center gap-3 transition-colors hover:text-[#111518]">
-                <ExternalLink className="h-4 w-4 text-[#9b753d]" />
+              <a href="#contact" className="flex items-center gap-3 transition-colors hover:text-[#0066cc]">
+                <ExternalLink className="h-4 w-4 text-[#86868b]" />
                 LinkedIn
               </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 pt-7 text-[10px] uppercase tracking-[0.14em] text-[#8f8b80] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-5 pt-7 text-[11px] text-[#86868b] sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} {legalName}</p>
           <div className="flex gap-6">
-            <a href="#home" className="transition-colors hover:text-[#111518]">Privacy</a>
-            <a href="#home" className="transition-colors hover:text-[#111518]">Terms</a>
-            <a href={`${import.meta.env.BASE_URL}?admin=1`} className="transition-colors hover:text-[#111518]">Admin</a>
+            <a href="#home" className="transition-colors hover:text-[#0066cc]">Privacy</a>
+            <a href="#home" className="transition-colors hover:text-[#0066cc]">Terms</a>
+            <a href={`${import.meta.env.BASE_URL}?admin=1`} className="transition-colors hover:text-[#0066cc]">Admin</a>
           </div>
         </div>
       </div>
@@ -1220,9 +1210,9 @@ export default function App() {
   const { companyInfo, holdings, isVisible } = useSiteContent();
 
   return (
-    <div className="min-h-screen bg-[#f3f1eb] text-[#121619]">
+    <div className="min-h-screen bg-white text-[#1d1d1f]">
       <motion.div
-        className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#a88148]"
+        className="fixed left-0 right-0 top-0 z-[60] h-[2px] origin-left bg-[#0071e3]"
         style={{ scaleX }}
       />
       <Header info={companyInfo} />
