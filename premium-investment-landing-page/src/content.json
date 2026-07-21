@@ -142,7 +142,7 @@
     {
       "section_key": "social_proof",
       "label": "Social Proof",
-      "visible": false,
+      "visible": true,
       "sort_order": 2
     },
     {
@@ -172,13 +172,13 @@
     {
       "section_key": "partnerships",
       "label": "Partnership Pathways",
-      "visible": false,
+      "visible": true,
       "sort_order": 7
     },
     {
       "section_key": "faq",
       "label": "FAQ",
-      "visible": false,
+      "visible": true,
       "sort_order": 8
     },
     {
