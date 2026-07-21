@@ -172,7 +172,7 @@
     {
       "section_key": "partnerships",
       "label": "Partnership Pathways",
-      "visible": true,
+      "visible": false,
       "sort_order": 7
     },
     {
