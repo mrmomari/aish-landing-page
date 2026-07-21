@@ -1,17 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500;600&family=Libre+Caslon+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: "DM Sans", Arial, sans-serif;
-  color: #121619;
-  background: #f3f1eb;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #1d1d1f;
+  background: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 76px;
+  scroll-padding-top: 44px;
 }
 
 body {
@@ -31,34 +31,25 @@ button {
 }
 
 ::selection {
-  color: #0b0f12;
-  background: #d5b575;
+  color: #ffffff;
+  background: #0071e3;
 }
 
 :focus-visible {
-  outline: 2px solid #9b753d;
+  outline: 2px solid #0071e3;
   outline-offset: 4px;
 }
 
-.font-serif {
-  font-family: "Libre Caslon Display", Georgia, serif;
+.font-display {
+  font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .font-mono {
-  font-family: "DM Mono", monospace;
-}
-
-.gold-text {
-  color: #9b753d;
-  background: linear-gradient(115deg, #7c5a24 0%, #c79c50 44%, #8f682c 72%, #b38941 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: "SF Mono", "Inter", monospace;
 }
 
 .hero-title {
   text-wrap: balance;
-  filter: drop-shadow(0 6px 28px rgba(243, 241, 235, 0.55));
 }
 
 .hero-kenburns {
@@ -69,8 +60,8 @@ button {
 .grain {
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.12) 0.55px, transparent 0.7px),
-    radial-gradient(rgba(255, 255, 255, 0.08) 0.55px, transparent 0.7px);
+    radial-gradient(rgba(255, 255, 255, 0.1) 0.55px, transparent 0.7px),
+    radial-gradient(rgba(255, 255, 255, 0.06) 0.55px, transparent 0.7px);
   background-position: 0 0, 7px 7px;
   background-size: 13px 13px;
   mix-blend-mode: soft-light;
@@ -87,7 +78,7 @@ button {
   left: 0;
   height: 1px;
   content: "";
-  background: #d4b573;
+  background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 350ms ease;
@@ -98,31 +89,64 @@ button {
   transform-origin: left;
 }
 
-.btn-gold {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: linear-gradient(115deg, #b48d51, #e5ca8f 55%, #caa665);
-  transition: box-shadow 300ms ease, transform 300ms ease;
-}
+/* Apple-style pill/capsule buttons */
+@layer components {
+  .btn-capsule {
+    border-radius: 980px;
+    transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 150ms ease;
+  }
 
-.btn-gold::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
-  background: linear-gradient(115deg, #eed8a5, #f5e5bc 55%, #d8b675);
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
+  .btn-capsule:active {
+    transform: scale(0.97);
+  }
 
-.btn-gold:hover {
-  box-shadow: 0 16px 40px rgba(199, 160, 91, 0.2);
-  transform: translateY(-2px);
-}
+  .btn-primary {
+    background: #0071e3;
+    color: #ffffff;
+  }
 
-.btn-gold:hover::before {
-  opacity: 1;
+  .btn-primary:hover {
+    background: #0077ed;
+  }
+
+  .btn-dark {
+    background: #1d1d1f;
+    color: #ffffff;
+  }
+
+  .btn-dark:hover {
+    background: #2d2d2f;
+  }
+
+  .btn-light {
+    background: #ffffff;
+    color: #1d1d1f;
+  }
+
+  .btn-light:hover {
+    background: #f5f5f7;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+  }
+
+  .btn-outline:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-outline-dark {
+    background: transparent;
+    border: 1px solid #86868b;
+    color: #1d1d1f;
+  }
+
+  .btn-outline-dark:hover {
+    border-color: #1d1d1f;
+  }
 }
 
 .portfolio-orbit {
@@ -154,11 +178,11 @@ button {
 
 @keyframes breathe {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 0.16;
     transform: scale(0.92);
   }
   50% {
-    opacity: 0.34;
+    opacity: 0.3;
     transform: scale(1.08);
   }
 }
@@ -174,7 +198,7 @@ button {
 
 @media (max-width: 639px) {
   .hero-title {
-    letter-spacing: -0.055em;
+    letter-spacing: -0.03em;
   }
 }
 

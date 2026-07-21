@@ -30,14 +30,14 @@ export function CompanyInfoForm({
 
   return (
     <div className="max-w-3xl">
-      <h2 className="text-2xl font-medium tracking-[-0.02em] text-[#22262b]">Company information</h2>
-      <p className="mt-2 text-sm text-[#6d7177]">
+      <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-[#1d1d1f]">Company information</h2>
+      <p className="mt-2 text-sm text-[#6e6e73]">
         This appears prominently on the landing page and in the footer. Click "Publish" above when
         you're done editing.
       </p>
 
       <div className="mt-6">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#77746a]">Company logo</p>
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Company logo</p>
         <ImageUpload
           folder="company"
           currentUrl={info.logo_url}
@@ -47,14 +47,14 @@ export function CompanyInfoForm({
       </div>
 
       <div className="mt-6">
-        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#77746a]">Hero background photo</p>
+        <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Hero background photo</p>
         <ImageUpload
           folder="hero"
           currentUrl={info.hero_image_url}
           onUploaded={(url) => update("hero_image_url", url)}
           label="Upload hero photo"
         />
-        <p className="mt-2 text-xs text-[#98958b]">
+        <p className="mt-2 text-xs text-[#86868b]">
           Shown behind the big headline at the top of the page. A wide landscape image works best.
         </p>
       </div>
@@ -62,21 +62,21 @@ export function CompanyInfoForm({
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {FIELDS.map((field) => (
           <div key={field.key} className={field.span ? "sm:col-span-2" : ""}>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">{field.label}</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">{field.label}</label>
             <input
               value={(info[field.key] as string) ?? ""}
               onChange={(e) => update(field.key, e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
         ))}
         <div className="sm:col-span-2">
-          <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Description</label>
+          <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Description</label>
           <textarea
             value={info.description ?? ""}
             onChange={(e) => update("description", e.target.value)}
             rows={3}
-            className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+            className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
           />
         </div>
       </div>

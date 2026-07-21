@@ -35,9 +35,9 @@ export function ImageUpload({
   return (
     <div className="flex items-center gap-4">
       {currentUrl ? (
-        <img src={currentUrl} alt="" className="h-16 w-16 rounded-md border border-[#e0dccf] object-cover" />
+        <img src={currentUrl} alt="" className="h-16 w-16 rounded-[10px] border border-[#d2d2d7] object-cover" />
       ) : (
-        <div className="flex h-16 w-16 items-center justify-center rounded-md border border-dashed border-[#cdc8ba] text-[#b3afa2]">
+        <div className="flex h-16 w-16 items-center justify-center rounded-[10px] border border-dashed border-[#d2d2d7] text-[#86868b]">
           <UploadCloud className="h-5 w-5" />
         </div>
       )}
@@ -46,7 +46,7 @@ export function ImageUpload({
           type="button"
           disabled={uploading}
           onClick={() => inputRef.current?.click()}
-          className="rounded-md border border-[#c9c4b6] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#55534b] transition-colors hover:border-[#9a7b3f] hover:text-[#9a7b3f] disabled:opacity-50"
+          className="btn-capsule btn-outline-dark px-4 py-2 text-xs font-semibold uppercase tracking-wide disabled:opacity-50"
         >
           {uploading ? "Uploading…" : label}
         </button>

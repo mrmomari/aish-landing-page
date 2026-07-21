@@ -19,7 +19,7 @@ function emptyHolding(sortOrder: number): Holding {
     contact_email: "",
     contact_phone: "",
     logo_url: null,
-    accent_color: "#d8b36a",
+    accent_color: "#0071e3",
     focus_tags: [],
     sort_order: sortOrder,
     visible: true,
@@ -80,17 +80,17 @@ export function HoldingEditor({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-[#22262b]/40 px-4 py-10">
-      <div className="w-full max-w-2xl rounded-xl border border-[#e3e0d5] bg-white p-6 shadow-2xl sm:p-8">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/40 px-4 py-10">
+      <div className="w-full max-w-2xl rounded-[18px] border border-[#d2d2d7] bg-white p-6 shadow-2xl sm:p-8">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-medium text-[#22262b]">{holding ? "Edit holding" : "Add holding"}</h3>
-          <button type="button" onClick={onClose} className="text-[#8b887e] hover:text-[#22262b]">
+          <h3 className="font-display text-xl font-semibold text-[#1d1d1f]">{holding ? "Edit holding" : "Add holding"}</h3>
+          <button type="button" onClick={onClose} className="text-[#86868b] hover:text-[#1d1d1f]">
             <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="mt-6">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#77746a]">Logo</p>
+          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Logo</p>
           <ImageUpload
             folder="holdings"
             currentUrl={form.logo_url}
@@ -100,36 +100,36 @@ export function HoldingEditor({
 
         <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Company name</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Company name</label>
             <input
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Short code (badge)</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Short code (badge)</label>
             <input
               maxLength={3}
               value={form.short_code}
               onChange={(e) => update("short_code", e.target.value.toUpperCase())}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Sector</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Sector</label>
             <input
               value={form.sector}
               onChange={(e) => update("sector", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Stage</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Stage</label>
             <select
               value={form.stage}
               onChange={(e) => update("stage", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             >
               {STAGES.map((stage) => (
                 <option key={stage} value={stage}>
@@ -139,62 +139,62 @@ export function HoldingEditor({
             </select>
           </div>
           <div className="sm:col-span-2">
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Headline</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Headline</label>
             <input
               value={form.headline}
               onChange={(e) => update("headline", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Description</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Description</label>
             <textarea
               rows={3}
               value={form.description}
               onChange={(e) => update("description", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Focus areas (comma separated)</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Focus areas (comma separated)</label>
             <input
               value={focusTagsInput}
               onChange={(e) => setFocusTagsInput(e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Website</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Website</label>
             <input
               value={form.website_url}
               onChange={(e) => update("website_url", e.target.value)}
               placeholder="https://"
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Accent color</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Accent color</label>
             <input
               type="color"
               value={form.accent_color}
               onChange={(e) => update("accent_color", e.target.value)}
-              className="mt-2 h-11 w-full rounded-md border border-[#dcd8cc] bg-white px-2"
+              className="mt-2 h-11 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-2"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Contact email</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Contact email</label>
             <input
               value={form.contact_email}
               onChange={(e) => update("contact_email", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Contact phone</label>
+            <label className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Contact phone</label>
             <input
               value={form.contact_phone}
               onChange={(e) => update("contact_phone", e.target.value)}
-              className="mt-2 w-full rounded-md border border-[#dcd8cc] bg-white px-4 py-3 text-sm text-[#22262b] outline-none focus:border-[#9a7b3f]"
+              className="mt-2 w-full rounded-[10px] border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] outline-none focus:border-[#0071e3]"
             />
           </div>
           <label className="flex items-center gap-3 text-sm text-[#3d4045] sm:col-span-2">
@@ -208,11 +208,11 @@ export function HoldingEditor({
           </label>
         </div>
 
-        <div className="mt-8 border-t border-[#e9e5da] pt-6">
-          <p className="text-xs font-medium uppercase tracking-wide text-[#77746a]">Additional photos</p>
+        <div className="mt-8 border-t border-[#d2d2d7] pt-6">
+          <p className="text-xs font-medium uppercase tracking-wide text-[#6e6e73]">Additional photos</p>
           <div className="mt-3 flex flex-wrap gap-3">
             {form.photos.map((url) => (
-              <div key={url} className="group relative h-20 w-20 overflow-hidden rounded-md border border-[#e0dccf]">
+              <div key={url} className="group relative h-20 w-20 overflow-hidden rounded-[10px] border border-[#d2d2d7]">
                 <img src={url} alt="" className="h-full w-full object-cover" />
                 <button
                   type="button"
@@ -223,7 +223,7 @@ export function HoldingEditor({
                 </button>
               </div>
             ))}
-            <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-md border border-dashed border-[#cdc8ba] text-xs text-[#8b887e] hover:border-[#9a7b3f] hover:text-[#9a7b3f]">
+            <label className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-[10px] border border-dashed border-[#d2d2d7] text-xs text-[#86868b] hover:border-[#0071e3] hover:text-[#0071e3]">
               {photoUploading ? "…" : "+ Add"}
               <input
                 type="file"
@@ -241,14 +241,14 @@ export function HoldingEditor({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md border border-[#c9c4b6] px-5 py-3 text-sm text-[#55534b] hover:border-[#22262b] hover:text-[#22262b]"
+            className="btn-capsule btn-outline-dark px-5 py-3 text-sm font-medium"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={handleSave}
-            className="rounded-md bg-[#9a7b3f] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#84672f]"
+            className="btn-capsule btn-primary px-6 py-3 text-sm font-medium"
           >
             Save holding
           </button>
